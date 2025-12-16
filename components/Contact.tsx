@@ -1,30 +1,18 @@
 import React, { useState } from 'react';
-import { Send, Sparkles, Loader2, CheckCircle } from 'lucide-react';
-import { analyzeMessage } from '../services/geminiService';
-import { ClassificationResult } from '../types';
+import { Send, CheckCircle } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [analysis, setAnalysis] = useState<ClassificationResult | null>(null);
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-
-  const handleAnalysis = async () => {
-    if (formData.message.length < 10) return;
-    setIsAnalyzing(true);
-    const result = await analyzeMessage(formData.message);
-    setAnalysis(result);
-    setIsAnalyzing(false);
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+    // Simulate form submission
     setTimeout(() => {
       setSubmitted(false);
       setFormData({ name: '', email: '', message: '' });
-      setAnalysis(null);
-      alert("Message sent! (Simulation)");
+      alert("Message sent successfully!");
     }, 2000);
   };
 
@@ -39,8 +27,6 @@ const Contact: React.FC = () => {
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Get In Touch</h2>
           <p className="text-slate-600 dark:text-slate-400">
             Have a project in mind? Let's discuss how we can automate your workflow.
-            <br />
-            <span className="text-indigo-600 dark:text-indigo-400 text-sm">Type a message and click "AI Analyze" to see my Email Classifier Agent in action.</span>
           </p>
         </div>
 
@@ -85,46 +71,8 @@ const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 />
-                
-                {/* AI Analysis Button inside textarea area */}
-                <button
-                  type="button"
-                  onClick={handleAnalysis}
-                  disabled={formData.message.length < 10 || isAnalyzing}
-                  className="absolute bottom-3 right-3 text-xs bg-indigo-50 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-500/30 px-3 py-1.5 rounded-full border border-indigo-200 dark:border-indigo-500/30 transition-all flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isAnalyzing ? <Loader2 size={12} className="animate-spin" /> : <Sparkles size={12} />}
-                  {isAnalyzing ? "Analyzing..." : "AI Analyze"}
-                </button>
               </div>
             </div>
-
-            {/* AI Analysis Result Display */}
-            {analysis && (
-              <div className="bg-indigo-50 dark:bg-slate-900/80 rounded-lg border border-indigo-200 dark:border-indigo-500/30 p-4 animate-in fade-in slide-in-from-top-2 duration-300">
-                <div className="flex items-center gap-2 mb-3 text-indigo-600 dark:text-indigo-400 text-sm font-bold uppercase tracking-wider">
-                  <BotIcon /> Agent Classification Output
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                  <div>
-                    <span className="block text-slate-500 dark:text-slate-500 text-xs">Category</span>
-                    <span className="text-slate-900 dark:text-white font-medium">{analysis.category}</span>
-                  </div>
-                  <div>
-                    <span className="block text-slate-500 dark:text-slate-500 text-xs">Priority</span>
-                    <span className={`font-medium ${analysis.priority === 'High' ? 'text-red-500 dark:text-red-400' : 'text-green-600 dark:text-green-400'}`}>{analysis.priority}</span>
-                  </div>
-                  <div>
-                    <span className="block text-slate-500 dark:text-slate-500 text-xs">Sentiment</span>
-                    <span className="text-slate-900 dark:text-white font-medium">{analysis.sentiment}</span>
-                  </div>
-                  <div>
-                    <span className="block text-slate-500 dark:text-slate-500 text-xs">Next Action</span>
-                    <span className="text-slate-900 dark:text-white font-medium">{analysis.suggestedAction}</span>
-                  </div>
-                </div>
-              </div>
-            )}
 
             <button
               type="submit"
@@ -143,23 +91,5 @@ const Contact: React.FC = () => {
     </section>
   );
 };
-
-const BotIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className="w-4 h-4"
-  >
-    <rect width="18" height="18" x="3" y="3" rx="2" />
-    <path d="M9 3v18" />
-    <path d="M15 9h.01" />
-    <path d="M9 15h6" />
-  </svg>
-)
 
 export default Contact;

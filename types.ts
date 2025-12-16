@@ -20,10 +20,3 @@ export interface SkillData {
   // Updated to include new categories used in the application
   category: 'Automation' | 'AI/ML' | 'Development' | 'Data' | 'Frontend' | 'Backend' | 'Tools' | 'AI Tools' | 'GenAI' | 'Voice AI' | 'ML';
 }
-
-export interface ClassificationResult {
-  category: string;
-  priority: string;
-  sentiment: string;
-  suggestedAction: string;
-}

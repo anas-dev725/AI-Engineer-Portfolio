@@ -1,23 +1,12 @@
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
-  // Load env file based on `mode` in the current working directory.
-  // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
-  const env = loadEnv(mode, (process as any).cwd(), '');
-
-  return {
-    plugins: [react()],
-    // For Vercel deployment, base should be '/' (root)
-    base: '/', 
-    define: {
-      // Polyfill process.env for the Google GenAI SDK and other dependencies
-      // This allows 'process.env.API_KEY' to be resolved at build time/runtime
-      'process.env': env
-    },
-    build: {
-      outDir: 'dist',
-    }
-  };
+export default defineConfig({
+  plugins: [react()],
+  // For Vercel deployment, base should be '/' (root)
+  base: '/',
+  build: {
+    outDir: 'dist',
+  }
 });

@@ -24,6 +24,18 @@
                 600: '#4f46e5',
                 700: '#4338ca',
               }
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'float-delayed': 'float 6s ease-in-out 3s infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'spin-slow': 'spin 12s linear infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              }
             }
           }
         }
@@ -49,6 +61,20 @@
       }
       .dark ::-webkit-scrollbar-thumb {
         background: #4f46e5;
+      }
+      
+      /* Dot Matrix Pattern (Cleaner than grid) */
+      .bg-dot-pattern {
+        background-color: transparent;
+        background-image: radial-gradient(#6366f1 1px, transparent 1px);
+        background-size: 24px 24px;
+      }
+      
+      /* Hide default cursor on desktop to allow custom cursor */
+      @media (min-width: 768px) {
+        body, a, button, input, textarea {
+          cursor: none;
+        }
       }
     </style>
   <script type="importmap">

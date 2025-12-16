@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon, Braces } from 'lucide-react';
 
 interface NavbarProps {
   darkMode: boolean;
@@ -20,11 +20,10 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
       
       // Check if we're at the bottom of the page
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
-        current = 'contact'; // Assuming contact is the last section
+        current = 'contact'; 
       } else {
         sections.forEach((section) => {
           const sectionTop = section.offsetTop;
-          // Offset of 150px ensures the active state changes as the section enters the main view
           if (window.scrollY >= (sectionTop - 150)) {
             current = section.getAttribute('id') || '';
           }
@@ -35,7 +34,7 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
+    handleScroll(); 
     
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -48,7 +47,6 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
     const element = document.getElementById(targetId);
     
     if (element) {
-      // Calculate header height (20 * 4 = 80px)
       const headerOffset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -76,14 +74,21 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl shadow-lg transform group-hover:rotate-12 transition-transform">
-              MA
-            </div>
-            <div className="ml-3 flex flex-col">
-              <span className="font-bold text-lg text-slate-800 dark:text-white leading-tight">Muhammad</span>
-              <span className="text-xs font-medium text-indigo-500 tracking-widest uppercase">Anas</span>
+          {/* Minimalist Monogram Logo */}
+          <div className="flex-shrink-0 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <div className="flex items-center gap-3">
+              <div className="relative flex items-center justify-center w-10 h-10 bg-indigo-600 rounded-xl text-white shadow-lg shadow-indigo-500/30 group-hover:scale-105 transition-transform duration-300">
+                 <Braces size={20} className="stroke-[3]" />
+                 <span className="absolute -bottom-1 -right-1 flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-white border-2 border-indigo-600"></span>
+                  </span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  ANAS
+                </span>
+              </div>
             </div>
           </div>
           

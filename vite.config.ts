@@ -3,15 +3,17 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  // Cast process to any to avoid "Property 'cwd' does not exist on type 'Process'" error
+  // Load env file based on `mode` in the current working directory.
+  // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
   const env = loadEnv(mode, (process as any).cwd(), '');
+
   return {
     plugins: [react()],
-    // Setting base to './' ensures assets are loaded relatively, 
-    // which prevents white screens on GitHub Pages subdirectories.
-    base: './', 
+    // For Vercel deployment, base should be '/' (root)
+    base: '/', 
     define: {
-      // Polyfill process.env for the Google GenAI SDK and existing code
+      // Polyfill process.env for the Google GenAI SDK and other dependencies
+      // This allows 'process.env.API_KEY' to be resolved at build time/runtime
       'process.env': env
     },
     build: {

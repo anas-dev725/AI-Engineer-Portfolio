@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
       {/* 2. Radial Fade for Depth */}
       <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-slate-50 dark:from-slate-950 dark:via-transparent dark:to-slate-950 pointer-events-none"></div>
 
-      {/* 3. Floating Tech Stack Icons - Specific List */}
+      {/* 3. Floating Tech Stack Icons */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         
         {/* n8n */}
@@ -113,8 +113,7 @@ const Hero: React.FC = () => {
         </h1>
 
         <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 leading-relaxed">
-          I bridge the gap between APIs, Databases, and AI Models. 
-          Expert in n8n, Lovable, and building autonomous AI agents that transform business processes.
+          I bridge the gap between APIs, databases, and AI models to build AI agents and automation systems. Specializing in n8n, Lovable, Retell AI, and Google AI Studio.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -139,7 +138,7 @@ const Hero: React.FC = () => {
             <div className="p-4 bg-white dark:bg-slate-900 rounded-2xl mb-4 border border-slate-200 dark:border-slate-800 shadow-lg group-hover:shadow-indigo-500/20 transition-all">
               <Bot className="w-8 h-8 text-indigo-500 dark:text-indigo-400" />
             </div>
-            <h3 className="font-bold text-slate-900 dark:text-white text-lg">AI Agents</h3>
+            <h3 className="font-bold text-slate-900 dark:text-white text-lg">AI Agents & Voice AI</h3>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Autonomous decision making</p>
           </div>
           <div className="flex flex-col items-center group">
@@ -151,37 +150,11 @@ const Hero: React.FC = () => {
           </div>
           <div className="flex flex-col items-center group">
             <div className="p-4 bg-white dark:bg-slate-900 rounded-2xl mb-4 border border-slate-200 dark:border-slate-800 shadow-lg group-hover:shadow-indigo-500/20 transition-all">
-              <Database className="w-8 h-8 text-indigo-500 dark:text-indigo-400" />
+              <Workflow className="w-8 h-8 text-indigo-500 dark:text-indigo-400" />
             </div>
-            <h3 className="font-bold text-slate-900 dark:text-white text-lg">Data Engineering</h3>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">ETL & Real-time Analytics</p>
+            <h3 className="font-bold text-slate-900 dark:text-white text-lg">Automation Workflows</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Streamlining Operations</p>
           </div>
-        </div>
-      </div>
-      
-      {/* 4. Circular Text Scroll Indicator (Modern Style) */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex items-center justify-center pointer-events-none">
-        <div className="relative w-24 h-24 flex items-center justify-center">
-            {/* Rotating Text Ring */}
-            <div className="absolute w-full h-full animate-spin-slow">
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                <path
-                  id="textPath"
-                  d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-                  fill="none"
-                />
-                <text className="text-[10px] font-bold uppercase tracking-[2px] fill-slate-400 dark:fill-slate-500">
-                  <textPath xlinkHref="#textPath">
-                    Scroll Down • Scroll Down •
-                  </textPath>
-                </text>
-              </svg>
-            </div>
-            
-            {/* Center Arrow */}
-            <div className="absolute text-indigo-500 dark:text-indigo-400 animate-bounce">
-              <ArrowRight className="transform rotate-90 w-5 h-5" />
-            </div>
         </div>
       </div>
     </section>

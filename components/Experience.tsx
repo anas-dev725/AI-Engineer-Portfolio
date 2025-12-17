@@ -19,9 +19,15 @@ const experiences: ExperienceType[] = [
 
 const Experience: React.FC = () => {
   return (
-    <section id="experience" className="py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12 text-center">Professional Experience</h2>
+    <section id="experience" className="relative py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
+      {/* Background Grid Pattern */}
+      <div className="absolute inset-0 bg-dot-pattern opacity-30 dark:opacity-20 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-slate-50 dark:from-slate-950 dark:via-transparent dark:to-slate-950 pointer-events-none"></div>
+
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-12 text-center">
+          Professional <span className="text-indigo-600 dark:text-indigo-400">Experience</span>
+        </h2>
         
         <div className="relative border-l border-slate-200 dark:border-slate-800 ml-4 md:ml-6 space-y-12">
           {experiences.map((exp, index) => (

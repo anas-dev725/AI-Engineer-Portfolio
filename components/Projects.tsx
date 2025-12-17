@@ -1,8 +1,9 @@
 import React from 'react';
 import { Project } from '../types';
-import { Mail, BarChart3, Phone, Users, Map, Cpu, ExternalLink } from 'lucide-react';
+import { Mail, BarChart3, Phone, Users, Map, Cpu, ExternalLink, Home, Calendar, Workflow } from 'lucide-react';
 
 const projects: Project[] = [
+  // ROW 1: Existing (High Impact)
   {
     title: "Email Classifier Agent",
     description: "AI-powered agent using n8n and OpenAI that classifies emails (sponsorships vs clients), generates smart replies, and integrates with Slack/WhatsApp for high-priority alerts.",
@@ -24,6 +25,31 @@ const projects: Project[] = [
     icon: "phone",
     link: "#"
   },
+
+  // ROW 2: New Projects (Requested)
+  {
+    title: "Property Inbound Voice Agent",
+    description: "Collects user information about required apartment size, location, and budget, then qualifies prospects to schedule a visit directly.",
+    tags: ["n8n", "Vapi", "Twilio"],
+    icon: "home",
+    link: "#"
+  },
+  {
+    title: "Healthcare Voice Agent",
+    description: "Asks for patient info and books appointments directly into CRM while checking doctor availability in real-time.",
+    tags: ["n8n", "Calendly", "ElevenLabs", "Twilio"],
+    icon: "calendar",
+    link: "#"
+  },
+  {
+    title: "HubSpot Contacts AI Agent",
+    description: "Collects user info from a form, alerts Slack channel, and triggers a separate webhook to email personalized offers directly to the user.",
+    tags: ["n8n", "Bravo", "Gmail", "Slack", "HubSpot"],
+    icon: "workflow",
+    link: "#"
+  },
+
+  // ROW 3: Previous Projects (Moved down)
   {
     title: "Customer E-commerce Segmentation",
     description: "Segmentation model using Python Scikit-learn. Utilizes K-Means clustering on RFM (Recency, Frequency, Monetary) data to identify customer groups for marketing.",
@@ -54,13 +80,22 @@ const IconMap: Record<string, React.ReactNode> = {
   users: <Users size={24} />,
   map: <Map size={24} />,
   cpu: <Cpu size={24} />,
+  home: <Home size={24} />,
+  calendar: <Calendar size={24} />,
+  workflow: <Workflow size={24} />,
 };
 
 const Projects: React.FC = () => {
   return (
-    <section id="projects" className="py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12 text-center">Featured Projects</h2>
+    <section id="projects" className="relative py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
+      {/* Background Grid Pattern */}
+      <div className="absolute inset-0 bg-dot-pattern opacity-30 dark:opacity-20 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-slate-50 dark:from-slate-950 dark:via-transparent dark:to-slate-950 pointer-events-none"></div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-12 text-center">
+          Featured <span className="text-indigo-600 dark:text-indigo-400">Projects</span>
+        </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
@@ -76,7 +111,7 @@ const Projects: React.FC = () => {
                   <div className="w-12 h-12 bg-indigo-50 dark:bg-indigo-500/10 rounded-lg flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300 shadow-sm group-hover:shadow-indigo-500/30">
                     {IconMap[project.icon]}
                   </div>
-                  {project.link && (
+                  {project.link && project.link !== "#" && (
                     <a 
                       href={project.link} 
                       className="text-slate-400 hover:text-indigo-500 transition-colors transform hover:rotate-12 hover:scale-110"

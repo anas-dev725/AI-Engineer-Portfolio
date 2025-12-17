@@ -7,9 +7,11 @@ const About: React.FC = () => {
         <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
           <div className="mb-10 lg:mb-0 relative group">
              <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition duration-500"></div>
-            {/* Note: Ensure the image file is named 'anas pfp.png' in your public folder */}
+            {/* 
+              NOTE: Ensure the image file in your public folder is named exactly "anas pfp.png".
+            */}
             <img 
-              src="anas pfp.png" 
+              src="https://raw.githubusercontent.com/anas-dev725/AI-Engineer-Portfolio/main/anas%20profile.jpeg" 
               alt="Muhammad Anas" 
               className="relative rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 w-full object-cover transform transition duration-500 group-hover:scale-[1.02]"
               onError={(e) => {
@@ -43,11 +45,11 @@ const About: React.FC = () => {
             <div className="mt-8 grid grid-cols-2 gap-4">
                <div className="bg-slate-50 dark:bg-slate-800 p-5 rounded-xl border-l-4 border-indigo-500 shadow-sm">
                  <span className="block text-2xl font-bold text-slate-900 dark:text-white">No-Code AI</span>
-                 <span className="text-sm text-slate-500 dark:text-slate-400">Lovable, n8n, Bolt</span>
+                 <span className="text-sm text-slate-500 dark:text-slate-400">Lovable, n8n, Retell, Vapi</span>
                </div>
                <div className="bg-slate-50 dark:bg-slate-800 p-5 rounded-xl border-l-4 border-purple-500 shadow-sm">
                  <span className="block text-2xl font-bold text-slate-900 dark:text-white">Gen AI</span>
-                 <span className="text-sm text-slate-500 dark:text-slate-400">Google AI Studio, OpenAI</span>
+                 <span className="text-sm text-slate-500 dark:text-slate-400">Google AI Studio, OpenAI, Claude</span>
                </div>
             </div>
           </div>

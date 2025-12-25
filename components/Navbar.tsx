@@ -12,28 +12,39 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
   const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-      
-      const sections = document.querySelectorAll('section');
-      let current = '';
-      
-      // Check if we're at the bottom of the page
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
-        current = 'contact'; 
-      } else {
-        sections.forEach((section) => {
-          const sectionTop = section.offsetTop;
-          if (window.scrollY >= (sectionTop - 150)) {
-            current = section.getAttribute('id') || '';
-          }
-        });
-      }
+    let ticking = false;
 
-      setActiveSection(current);
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20);
+          
+          const sections = document.querySelectorAll('section');
+          let current = '';
+          
+          // Check if we're at the bottom of the page
+          if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+            current = 'contact'; 
+          } else {
+            sections.forEach((section) => {
+              const sectionTop = section.offsetTop;
+              const sectionHeight = section.clientHeight;
+              if (window.scrollY >= (sectionTop - 250) && window.scrollY < (sectionTop + sectionHeight - 250)) {
+                current = section.getAttribute('id') || '';
+              }
+            });
+          }
+
+          setActiveSection(current);
+          ticking = false;
+        });
+        
+        ticking = true;
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
+    // Initial check
     handleScroll(); 
     
     return () => window.removeEventListener('scroll', handleScroll);

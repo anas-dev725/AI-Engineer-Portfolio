@@ -1,91 +1,47 @@
-import React, { useState } from 'react';
-import { Send, CheckCircle } from 'lucide-react';
+import React from 'react';
+import { MessageCircle, Calendar } from 'lucide-react';
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    // Simulate form submission
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', message: '' });
-      alert("Message sent successfully!");
-    }, 2000);
-  };
-
   return (
-    <section id="contact" className="py-20 bg-white dark:bg-slate-900 relative overflow-hidden transition-colors duration-300">
-       {/* Decorative glow */}
-       <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
-       <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-purple-500/10 dark:bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
+    <section id="contact" className="py-24 bg-white dark:bg-slate-950 transition-colors duration-300">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative rounded-[2.5rem] overflow-hidden bg-[#0B0F19] dark:bg-[#020617] shadow-2xl px-6 py-16 sm:px-16 sm:py-24 text-center border border-slate-800">
+          
+          {/* Subtle Background Glows matching the reference dark vibe */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+             <div className="absolute top-0 left-1/4 w-full max-w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[100px] -translate-y-1/2 transform -translate-x-1/2"></div>
+             <div className="absolute bottom-0 right-1/4 w-full max-w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[100px] translate-y-1/2 transform translate-x-1/2"></div>
+          </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Get In Touch</h2>
-          <p className="text-slate-600 dark:text-slate-400">
-            Have a project in mind? Let's discuss how we can automate your workflow.
-          </p>
-        </div>
-
-        <div className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-10 shadow-2xl">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  required
-                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all outline-none"
-                  placeholder="John Doe"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  required
-                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all outline-none"
-                  placeholder="john@example.com"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                />
-              </div>
+          <div className="relative z-10 flex flex-col items-center">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
+              Ready to Automate Your Workflow?
+            </h2>
+            <p className="text-lg sm:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Don't settle for manual processes. Experience the power of intelligent automation and scale your business today.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+              <a 
+                href="https://wa.me/923202845350?text=Hi%20Anas,%20I'm%20interested%20in%20discussing%20an%20automation%20project."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold text-slate-900 bg-white rounded-full hover:bg-slate-200 transition-all hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.15)] min-w-[160px]"
+              >
+                Let's Talk
+                <MessageCircle className="ml-2 w-5 h-5" />
+              </a>
+              <a 
+                href="https://calendly.com/anasmobin0/30min" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white border border-slate-700 bg-white/5 rounded-full hover:bg-white/10 transition-all min-w-[160px]"
+              >
+                Book a Call
+                <Calendar className="ml-2 w-5 h-5" />
+              </a>
             </div>
-
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Message</label>
-              <div className="relative">
-                <textarea
-                  id="message"
-                  rows={4}
-                  required
-                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all outline-none"
-                  placeholder="I need help automating my lead generation process..."
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                />
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              disabled={submitted}
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-lg transition-all shadow-lg hover:shadow-indigo-500/25 flex items-center justify-center gap-2 disabled:opacity-70"
-            >
-              {submitted ? (
-                <>Sent Successfully <CheckCircle size={20} /></>
-              ) : (
-                <>Send Message <Send size={20} /></>
-              )}
-            </button>
-          </form>
+          </div>
         </div>
       </div>
     </section>

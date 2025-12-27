@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bot, Heart, Mic, MousePointer2, Zap, Code2 } from 'lucide-react';
+import { Bot, Heart, Mic, MousePointer2, Zap, Code2, Globe } from 'lucide-react';
 
 interface Skill {
   name: string;
@@ -16,6 +16,20 @@ const skillsData: Skill[] = [
     category: 'Automation', 
     icon: 'https://cdn.simpleicons.org/n8n/FF6584',
     color: 'border-pink-500' 
+  },
+  { 
+    name: 'Playwright', 
+    category: 'Automation', 
+    fallbackIcon: (
+      <svg role="img" viewBox="0 0 24 24" className="w-8 h-8 text-[#2EAD33] fill-current" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1.355 5.923c.256 2.408 1.488 7.822 5.158 11.772 5 5.395 13.67 6.223 17.014 6.223 3.621 0 9.791-.867 14.682-5.125 3.135-2.727 5.357-7.273 5.357-7.273s2.222 4.546 5.357 7.273c4.891 4.258 11.061 5.125 14.682 5.125 3.344 0 12.014-.828 17.014-6.223 3.67-3.95 4.902-9.364 5.158-11.772v-1.09c-4.9.29-10.316 1.657-14.583 5.808-3.57 3.471-5.823 7.863-5.823 7.863s-2.083-4.97-6.35-8.41C74.025 6.395 68.3 5.22 62.964 4.89c-5.337.33-11.062 1.505-15.454 5.202-4.267 3.44-6.35 8.41-6.35 8.41s-2.253-4.392-5.823-7.863c-4.267-4.15-9.683-5.517-14.583-5.808v1.09z" transform="scale(0.24) translate(4,4)" /> 
+        {/* Adjusted scale/translate for 24x24 viewbox or used path directly compatible with 24x24 */}
+        <path d="M20.65 11.1c-1.8 1.8-2.93 4.08-2.93 4.08s-1.05-2.58-3.2-4.36c-2.22-1.85-5.1-2.46-7.79-2.63-2.69.17-5.57.78-7.79 2.63-2.15 1.78-3.2 4.36-3.2 4.36s-1.13-2.28-2.93-4.08C-1.47 6.84-4.18 6.16-6.63 6v.55c.13 1.2.74 3.91 2.58 5.89 2.5 2.7 6.84 3.11 8.51 3.11 1.81 0 4.9-.43 7.34-2.56 1.57-1.36 2.68-3.64 2.68-3.64s1.11 2.27 2.68 3.64c2.44 2.13 5.53 2.56 7.34 2.56 1.67 0 6.01-.41 8.51-3.11 1.84-1.98 2.45-4.69 2.58-5.89V6c-2.45.16-5.16.84-7.29 2.92z" transform="translate(12, 12) scale(0.5)" style={{ display: 'none' }} />
+        {/* Using the standard Simple Icons path properly scaled for 24x24 */}
+        <path d="M1.35 6.2c.26 2.5 1.5 8.12 5.2 12.22 5.04 5.6 13.78 6.46 17.15 6.46 3.65 0 9.87-.9 14.8-5.32 3.16-2.83 5.4-7.55 5.4-7.55s2.24 4.72 5.4 7.55c4.93 4.42 11.15 5.32 14.8 5.32 3.37 0 12.1-.86 17.15-6.46 3.7-4.1 4.94-9.72 5.2-12.22V5.07c-4.94.3-10.4 1.72-14.7 6.03-3.6 3.6-5.87 8.16-5.87 8.16s-2.1-5.16-6.4-8.73c-4.43-3.7-10.2-4.92-15.58-5.26-5.38.34-11.15 1.56-15.58 5.26-4.3 3.57-6.4 8.73-6.4 8.73s-2.26-4.56-5.87-8.16C11.75 6.8 6.3 5.37 1.35 5.07V6.2z" />
+      </svg>
+    ),
+    color: 'border-green-500' 
   },
   { 
     name: 'Lovable', 
@@ -53,6 +67,12 @@ const skillsData: Skill[] = [
     icon: 'https://cdn.simpleicons.org/anthropic/D97757',
     color: 'border-orange-500' 
   },
+  {
+    name: 'Perplexity',
+    category: 'GenAI',
+    icon: 'https://cdn.simpleicons.org/perplexity/222222?dark=white',
+    color: 'border-teal-500'
+  },
 
   // Voice AI
   { 
@@ -80,6 +100,12 @@ const skillsData: Skill[] = [
     category: 'Development', 
     icon: 'https://cdn.simpleicons.org/python/3776AB',
     color: 'border-blue-400' 
+  },
+  { 
+    name: 'Sanity', 
+    category: 'Development', 
+    icon: 'https://cdn.simpleicons.org/sanity/F03E2F',
+    color: 'border-red-400' 
   },
   { 
     name: 'Replit AI', 
@@ -147,10 +173,10 @@ const Skills: React.FC = () => {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 relative z-10 text-center">
         <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
-          Tech <span className="text-indigo-600 dark:text-indigo-400">Stack</span>
+          Technical <span className="text-indigo-600 dark:text-indigo-400">Expertise</span>
         </h2>
         <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
-          The powerful tools and technologies I use to build autonomous agents and scalable products.
+          I love working with AI and automation tools to turn ideas into real-world solutions that businesses can rely on.
         </p>
       </div>
 

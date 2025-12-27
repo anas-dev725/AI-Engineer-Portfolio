@@ -10,9 +10,20 @@ const experiences: ExperienceType[] = [
     period: "Feb 2025 - Present",
     achievements: [
       "Built workflow automations in n8n to design no-code solutions integrating APIs and databases.",
-      "Developed a LinkedIn Post Generator using n8n that combines user input, OpenAI for content, and DALL·E for auto-generated visuals.",
-      "Created an Email Classifier Agent using n8n with Gmail triggers, and AI-based classification to auto-label and route inbound emails.",
-      "Built a Research Agent workflow that pulls data from multiple APIs, including Tavily, to generate topic briefs."
+      "Developed AI agents and SaaS products that make complex processes run smoothly.",
+      "Built voice agents using VAPI, ElevenLabs, and Retell AI to handle real-time interactions and lead qualification."
+    ]
+  },
+  {
+    role: "Content Executive",
+    company: "Impleko",
+    location: "Florida",
+    period: "Aug 2024 – Present",
+    achievements: [
+      "Managed content for landing pages, blogs, eBooks, case studies, and social media channels to maintain consistent brand messaging.",
+      "Created ad copy and ran multiple Meta ad campaigns promoting AI agents and voice agents for engagement and conversions.",
+      "Oversaw content population and updates on WordPress and Sanity CMS.",
+      "Conducted website analytics research to identify trend and improve user engagement."
     ]
   }
 ];

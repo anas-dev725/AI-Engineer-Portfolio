@@ -8,19 +8,21 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
+import Stats from './components/Stats';
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true);
+  // Initialize theme state. 
+  // Default is false (Light Mode) unless 'dark' is explicitly saved in localStorage.
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('theme');
+      return savedTheme === 'dark';
+    }
+    return false;
+  });
 
   useEffect(() => {
-    // On mount, check if dark mode is set in localStorage or system preference
-    const isDark = localStorage.getItem('theme') === 'dark' || 
-      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    
-    setDarkMode(isDark);
-  }, []);
-
-  useEffect(() => {
+    // Apply theme class to document element and save to localStorage
     if (darkMode) {
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
@@ -42,6 +44,7 @@ function App() {
         <Hero />
         <About />
         <Experience />
+        <Stats />
         <Skills />
         <Projects />
         <Contact />

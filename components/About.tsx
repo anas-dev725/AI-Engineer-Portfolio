@@ -29,16 +29,11 @@ const About: React.FC = () => {
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-6">About Me</h2>
             <div className="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
               <p>
-                I am <strong className="text-indigo-600 dark:text-indigo-400">Muhammad Anas</strong>, an AI Automation Engineer passionate about building systems that think and act. 
-                My expertise lies in AI Product Development, orchestrating complex workflows using <span className="font-semibold text-slate-800 dark:text-slate-100">n8n</span>, and building rapid prototypes with tools like <span className="font-semibold text-slate-800 dark:text-slate-100">Lovable</span> and <span className="font-semibold text-slate-800 dark:text-slate-100">Bolt</span>.
+                I’m an <strong className="text-indigo-600 dark:text-indigo-400">AI Automation Engineer</strong> who likes building systems that think before they act. 
+                I work on <span className="font-semibold text-slate-800 dark:text-slate-100">AI product development</span>, design automation workflows with <span className="font-semibold text-slate-800 dark:text-slate-100">n8n</span>, and quickly turn ideas into working prototypes using tools like <span className="font-semibold text-slate-800 dark:text-slate-100">Lovable</span>, <span className="font-semibold text-slate-800 dark:text-slate-100">Bolt</span>, and <span className="font-semibold text-slate-800 dark:text-slate-100">Google AI Studio</span>.
               </p>
               <p>
-                Currently creating solutions at <strong className="text-slate-900 dark:text-white">Impleko AI</strong>, I focus on removing manual bottlenecks. 
-                Whether it's an intelligent email classifier that routes communications automatically or a lead-generation voice agent 
-                using <span className="font-semibold text-slate-800 dark:text-slate-100">Retell AI</span> that qualifies prospects in real-time, I build tools that drive efficiency.
-              </p>
-              <p>
-                Beyond the code, I have a deep understanding of customer data segmentation and computer science fundamentals.
+                Lately, I’ve been building <span className="font-semibold text-slate-800 dark:text-slate-100">SaaS products</span>, <span className="font-semibold text-slate-800 dark:text-slate-100">AI agents</span>, automation workflows, websites, and <span className="font-semibold text-slate-800 dark:text-slate-100">voice agents</span>. I love turning ambitious AI ideas into simple solutions, and I’m always curious to try new tools to build something better.
               </p>
             </div>
 

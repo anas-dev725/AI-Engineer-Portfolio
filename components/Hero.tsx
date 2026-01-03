@@ -2,6 +2,21 @@ import React from 'react';
 import { ArrowRight, Bot, Zap, Database, Mic, Terminal, Workflow, Code, Sparkles, MessageSquareQuote, Heart, MousePointer2, Phone, AudioWaveform } from 'lucide-react';
 
 const Hero: React.FC = () => {
+  const handleScrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const element = document.getElementById('projects');
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-slate-50 dark:bg-slate-950">
       
@@ -96,14 +111,7 @@ const Hero: React.FC = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
-        <div className="inline-flex items-center space-x-2 bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-full px-4 py-1.5 mb-8 backdrop-blur-sm shadow-sm">
-          <span className="flex h-2 w-2 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-          </span>
-          <span className="text-sm font-medium text-slate-600 dark:text-slate-300">Open to new opportunities</span>
-        </div>
-
+        
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6">
           Hi, I'm <span className="text-indigo-600 dark:text-indigo-400">Muhammad Anas</span>
           <br />
@@ -119,6 +127,7 @@ const Hero: React.FC = () => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href="#projects"
+            onClick={handleScrollToProjects}
             className="w-full sm:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-semibold transition-all shadow-[0_10px_20px_rgba(79,70,229,0.3)] hover:shadow-[0_15px_30px_rgba(79,70,229,0.4)] hover:-translate-y-1 flex items-center justify-center"
           >
             View Projects

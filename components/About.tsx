@@ -7,9 +7,6 @@ const About: React.FC = () => {
         <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
           <div className="mb-10 lg:mb-0 relative group">
              <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition duration-500"></div>
-            {/* 
-              NOTE: Ensure the image file in your public folder is named exactly "anas pfp.png".
-            */}
             <img 
               src="https://raw.githubusercontent.com/anas-dev725/AI-Engineer-Portfolio/main/anas%20profile.jpeg" 
               alt="Muhammad Anas" 

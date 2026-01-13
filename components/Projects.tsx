@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import { Project } from '../types';
-import { Mail, BarChart3, Phone, Users, Map, Cpu, ExternalLink, Home, Calendar, Workflow, LayoutTemplate, UtensilsCrossed, FileCheck } from 'lucide-react';
+import { Mail, BarChart3, Phone, Users, Map, Cpu, ExternalLink, Home, Calendar, Workflow, LayoutTemplate, UtensilsCrossed, FileCheck, BookOpen } from 'lucide-react';
 
 const projects: Project[] = [
   // AI SaaS Apps
+  {
+    title: "Study Zap",
+    description: "Stop wasting hours on manual notes. StudyZap.ai turns your PDFs into structured guides and 10-question quizzes instantly, using AI to pinpoint your knowledge gaps.",
+    tags: ["React", "Gemini API", "TypeScript", "Vercel"],
+    icon: "book",
+    link: "https://studyzapai.vercel.app/",
+    category: "AI SaaS Apps"
+  },
   {
     title: "Launch Copy",
     description: "A SaaS-based AI landing page generator. Users input product details, and it generates complete landing page copy with a live design preview feature.",
@@ -121,6 +129,7 @@ const IconMap: Record<string, React.ReactNode> = {
   layout: <LayoutTemplate size={24} />,
   food: <UtensilsCrossed size={24} />,
   check: <FileCheck size={24} />,
+  book: <BookOpen size={24} />,
 };
 
 const Projects: React.FC = () => {

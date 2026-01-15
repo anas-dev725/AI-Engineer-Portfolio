@@ -3,14 +3,22 @@ import { Project } from '../types';
 import { Mail, BarChart3, Phone, Users, Map, Cpu, ExternalLink, Home, Calendar, Workflow, LayoutTemplate, UtensilsCrossed, FileCheck, BookOpen } from 'lucide-react';
 
 const projects: Project[] = [
-  // AI SaaS Apps
+  // SaaS Products
+  {
+    title: "PathVerse AR",
+    description: "PathVerse AR is a smart indoor navigation system built for IOBM, designed to help students find their way inside the CBM, IT, and SSK buildings with ease. Using AI-powered visual recognition instead of GPS, it makes indoor navigation simple, accurate, and stress-free.",
+    tags: ["React", "TypeScript", "Gemini API", "Three.js", "Vercel"],
+    icon: "map",
+    link: "https://path-verse-ar.vercel.app/",
+    category: "SaaS Products"
+  },
   {
     title: "Study Zap",
-    description: "Stop wasting hours on manual notes. StudyZap.ai turns your PDFs into structured guides and 10-question quizzes instantly, using AI to pinpoint your knowledge gaps.",
+    description: "Stop wasting hours on manual notes. StudyZap.ai turns your PDFs into structured guides and 10-question quizzes instantly, using AI to pinpoint your knowledge gaps. Bridge your knowledge gaps with instant feedback designed for high-pressure exam seasons.",
     tags: ["React", "Gemini API", "TypeScript", "Vercel"],
     icon: "book",
     link: "https://studyzapai.vercel.app/",
-    category: "AI SaaS Apps"
+    category: "SaaS Products"
   },
   {
     title: "Launch Copy",
@@ -18,7 +26,7 @@ const projects: Project[] = [
     tags: ["React", "TypeScript", "Gemini API", "Vercel"],
     icon: "layout",
     link: "https://landing-page-generator-nu.vercel.app/",
-    category: "AI SaaS Apps"
+    category: "SaaS Products"
   },
   {
     title: "Food Punch Karachi",
@@ -26,7 +34,7 @@ const projects: Project[] = [
     tags: ["React", "Gemini API", "WhatsApp API", "Vercel"],
     icon: "food",
     link: "https://food-punch-karachi.vercel.app/",
-    category: "AI SaaS Apps"
+    category: "SaaS Products"
   },
 
   // AI Agents & Automation
@@ -135,7 +143,7 @@ const IconMap: Record<string, React.ReactNode> = {
 const Projects: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   
-  const categories = ["All", "AI SaaS Apps", "AI Agents & Automation", "Voice AI", "Python & Data"];
+  const categories = ["All", "SaaS Products", "AI Agents & Automation", "Voice AI", "Python & Data"];
 
   const filteredProjects = activeCategory === 'All' 
     ? projects 
@@ -221,7 +229,6 @@ const Projects: React.FC = () => {
         </div>
       </div>
       
-      {/* Simple inline keyframes for fade animation */}
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px); }

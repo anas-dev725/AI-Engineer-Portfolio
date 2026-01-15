@@ -13,7 +13,7 @@ const About: React.FC = () => {
               className="relative rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 w-full object-cover transform transition duration-500 group-hover:scale-[1.02]"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                // Fallback to a placeholder if image is not found
+                // Fallback to a placeholder if the specific image fails to load
                 target.src = 'https://picsum.photos/600/600?grayscale'; 
               }}
             />

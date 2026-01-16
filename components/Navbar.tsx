@@ -95,11 +95,6 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-white border-2 border-indigo-600"></span>
                   </span>
               </div>
-              <div className="flex flex-col">
-                <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                  ANAS
-                </span>
-              </div>
             </div>
           </div>
           

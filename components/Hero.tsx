@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Bot, Zap, Database, Mic, Terminal, Workflow, Code, Sparkles, MessageSquareQuote, Heart, MousePointer2, Phone, AudioWaveform } from 'lucide-react';
+import { Bot, Zap, Database, Mic, Terminal, Workflow, Code, Sparkles, MessageSquareQuote, Heart, MousePointer2, Phone, AudioWaveform } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const handleScrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -17,91 +17,84 @@ const Hero: React.FC = () => {
     }
   };
 
+  const handleCallAgent = () => {
+    // Access the RetellWidget object
+    const retell = (window as any).RetellWidget || (window as any).retellWidget;
+    
+    if (retell) {
+      // Use startCall() specifically for voice agents to avoid "Failed to create chat" error
+      if (typeof retell.startCall === 'function') {
+        retell.startCall();
+      } else if (typeof retell.open === 'function') {
+        retell.open();
+      }
+    } else {
+      console.error("RetellWidget script not loaded yet.");
+      alert("The AI Agent is initializing. Please try again in a moment.");
+    }
+  };
+
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-slate-50 dark:bg-slate-950">
       
-      {/* 1. Dot Pattern Background */}
       <div className="absolute inset-0 bg-dot-pattern opacity-30 dark:opacity-20 pointer-events-none"></div>
-      
-      {/* 2. Radial Fade for Depth */}
       <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-slate-50 dark:from-slate-950 dark:via-transparent dark:to-slate-950 pointer-events-none"></div>
 
-      {/* 3. Floating Tech Stack Icons */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        
-        {/* n8n */}
         <div className="absolute top-[15%] left-[10%] animate-float opacity-30 dark:opacity-40 hover:opacity-100 transition-opacity">
           <div className="flex items-center gap-2 text-rose-500">
             <Workflow size={32} />
             <span className="text-sm font-bold">n8n</span>
           </div>
         </div>
-
-        {/* Python */}
         <div className="absolute top-[20%] right-[12%] animate-float-delayed opacity-30 dark:opacity-40">
           <div className="flex items-center gap-2 text-blue-500">
             <Terminal size={32} />
             <span className="text-sm font-bold">Python</span>
           </div>
         </div>
-
-        {/* Lovable */}
         <div className="absolute top-[35%] left-[5%] animate-pulse-slow opacity-30 dark:opacity-40">
           <div className="flex items-center gap-2 text-pink-500">
             <Heart size={28} />
             <span className="text-sm font-bold">Lovable</span>
           </div>
         </div>
-
-        {/* ElevenLabs */}
         <div className="absolute bottom-[40%] left-[8%] animate-float opacity-30 dark:opacity-40">
           <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
             <AudioWaveform size={28} />
             <span className="text-sm font-bold">ElevenLabs</span>
           </div>
         </div>
-
-        {/* Vapi */}
         <div className="absolute bottom-[20%] left-[15%] animate-float-delayed opacity-30 dark:opacity-40">
           <div className="flex items-center gap-2 text-purple-600">
             <Mic size={32} />
             <span className="text-sm font-bold">Vapi</span>
           </div>
         </div>
-
-        {/* Retell AI */}
         <div className="absolute bottom-[15%] right-[25%] animate-float opacity-30 dark:opacity-40">
           <div className="flex items-center gap-2 text-indigo-500">
             <Phone size={28} />
             <span className="text-sm font-bold">Retell AI</span>
           </div>
         </div>
-
-        {/* Cursor */}
         <div className="absolute top-[40%] right-[5%] animate-pulse-slow opacity-20 dark:opacity-30">
           <div className="flex items-center gap-2 text-slate-900 dark:text-white">
             <MousePointer2 size={36} />
             <span className="text-sm font-bold">Cursor</span>
           </div>
         </div>
-
-        {/* Supabase */}
         <div className="absolute bottom-[30%] right-[10%] animate-float-delayed opacity-30 dark:opacity-40">
           <div className="flex items-center gap-2 text-emerald-500">
             <Database size={32} />
             <span className="text-sm font-bold">Supabase</span>
           </div>
         </div>
-
-        {/* Claude */}
         <div className="absolute top-[12%] left-[45%] animate-float opacity-30 dark:opacity-40">
            <div className="flex flex-col items-center text-orange-600 dark:text-orange-400">
               <MessageSquareQuote size={28} />
               <span className="text-xs font-mono mt-1">Claude</span>
            </div>
         </div>
-
-         {/* Gemini */}
          <div className="absolute top-[50%] right-[35%] animate-float-delayed opacity-30 dark:opacity-40">
            <div className="flex flex-col items-center text-sky-400">
               <Sparkles size={28} />
@@ -132,14 +125,12 @@ const Hero: React.FC = () => {
           >
             View Projects
           </a>
-          <a
-            href="https://www.linkedin.com/in/muhammad-anas804/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={handleCallAgent}
             className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-white rounded-full font-semibold transition-all border border-slate-200 dark:border-slate-700 flex items-center justify-center group hover:shadow-lg"
           >
-            Contact Me <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
+            Call AI Agent <Phone className="ml-2 w-4 h-4 group-hover:scale-110 transition-transform" />
+          </button>
         </div>
 
         <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl w-full mx-auto">

@@ -53,56 +53,44 @@
       }
     </script>
     <style>
-      /* Custom scrollbar for a tech feel */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #94a3b8;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #64748b;
-      }
-      .dark ::-webkit-scrollbar-track {
-        background: #0f172a;
-      }
-      .dark ::-webkit-scrollbar-thumb {
-        background: #4f46e5;
-      }
-      
-      /* Dot Matrix Pattern (Cleaner than grid) */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+      .dark ::-webkit-scrollbar-track { background: #0f172a; }
+      .dark ::-webkit-scrollbar-thumb { background: #4f46e5; }
       .bg-dot-pattern {
         background-color: transparent;
         background-image: radial-gradient(#6366f1 1px, transparent 1px);
         background-size: 24px 24px;
       }
-      
-      /* Hide default cursor on desktop to allow custom cursor */
       @media (min-width: 768px) {
-        body, a, button, input, textarea {
-          cursor: none;
-        }
+        body, a, button, input, textarea { cursor: none; }
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
-    "vite": "https://esm.sh/vite@^7.3.0",
-    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
-  }
-}
-</script>
-</head>
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@^19.2.3",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+        "react/": "https://esm.sh/react@^19.2.3/",
+        "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+        "vite": "https://esm.sh/vite@^7.3.0",
+        "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
+      }
+    }
+    </script>
+  </head>
   <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-200 antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-300">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
+    <!-- Retell AI Widget Script -->
+    <script
+      id="retell-widget"
+      src="https://dashboard.retellai.com/retell-widget.js"
+      data-public-key="key_40f9c36a9974af62e9a10b44bbd9"
+      data-agent-id="agent_4b475693748c54c0eceb95fd0b"
+      data-show-badge="false"
+    ></script>
   </body>
 </html>

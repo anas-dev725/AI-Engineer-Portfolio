@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bot, Zap, Database, Mic, Terminal, Workflow, Code, Sparkles, MessageSquareQuote, Heart, MousePointer2, Phone, AudioWaveform, MessageCircle } from 'lucide-react';
+import { Bot, Zap, Database, Mic, Terminal, Workflow, Code, Sparkles, MessageSquareQuote, Heart, MousePointer2, Phone, AudioWaveform } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const handleScrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -14,16 +14,6 @@ const Hero: React.FC = () => {
         top: offsetPosition,
         behavior: 'smooth'
       });
-    }
-  };
-
-  const handleChatFocus = () => {
-    // Since the widget lives in the bottom right, we can't always programmatically open it 
-    // without a specific API, but we can give a visual cue or simple alert if needed.
-    // For now, this button serves as a visual CTA pointing users to the widget.
-    const widget = document.getElementById('cd-widget');
-    if (widget) {
-        widget.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -118,12 +108,14 @@ const Hero: React.FC = () => {
           >
             View Projects
           </a>
-          <button
-            onClick={handleChatFocus}
+          <a
+            href="https://www.linkedin.com/in/muhammad-anas804/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-white rounded-full font-semibold transition-all border border-slate-200 dark:border-slate-700 flex items-center justify-center group hover:shadow-lg"
           >
-            Chat with AI <MessageCircle className="ml-2 w-4 h-4 group-hover:scale-110 transition-transform" />
-          </button>
+            Contact Me
+          </a>
         </div>
 
         <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl w-full mx-auto">

@@ -2,12 +2,6 @@ import React from 'react';
 import { MessageCircle, Calendar } from 'lucide-react';
 
 const Contact: React.FC = () => {
-  const handleChatFocus = (e: React.MouseEvent) => {
-    e.preventDefault();
-    // Scroll to the bottom where the widget usually resides if programmatic opening isn't supported
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-  };
-
   return (
     <section id="contact" className="py-24 bg-white dark:bg-slate-950 transition-colors duration-300">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,13 +21,15 @@ const Contact: React.FC = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
-              <button 
-                onClick={handleChatFocus}
+              <a 
+                href="https://wa.me/923202845350?text=Hey%20Anas,%20I%20want%20to%20discuss%20an%20automation%20project."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold text-slate-900 bg-white rounded-full hover:bg-slate-200 transition-all hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.15)] min-w-[160px]"
               >
-                Chat with AI
+                Let's Chat
                 <MessageCircle className="ml-2 w-5 h-5" />
-              </button>
+              </a>
               <a 
                 href="https://calendly.com/anasmobin0/30min" 
                 target="_blank" 

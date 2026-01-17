@@ -1,24 +1,11 @@
 import React from 'react';
-import { Phone, Calendar } from 'lucide-react';
+import { MessageCircle, Calendar } from 'lucide-react';
 
 const Contact: React.FC = () => {
-  const handleCallAgent = (e: React.MouseEvent) => {
+  const handleChatFocus = (e: React.MouseEvent) => {
     e.preventDefault();
-    
-    // Access the RetellWidget object
-    const retell = (window as any).RetellWidget || (window as any).retellWidget;
-    
-    if (retell) {
-      // Use startCall() specifically for voice agents to avoid "Failed to create chat" error
-      if (typeof retell.startCall === 'function') {
-        retell.startCall();
-      } else if (typeof retell.open === 'function') {
-        retell.open();
-      }
-    } else {
-      // Fallback to WhatsApp if script fails to load
-      window.open("https://wa.me/923202845350?text=Hi%20Anas,%20I'm%20interested%20in%20discussing%20an%20automation%20project.", "_blank");
-    }
+    // Scroll to the bottom where the widget usually resides if programmatic opening isn't supported
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   };
 
   return (
@@ -41,11 +28,11 @@ const Contact: React.FC = () => {
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
               <button 
-                onClick={handleCallAgent}
+                onClick={handleChatFocus}
                 className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold text-slate-900 bg-white rounded-full hover:bg-slate-200 transition-all hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.15)] min-w-[160px]"
               >
-                Talk to my AI
-                <Phone className="ml-2 w-5 h-5" />
+                Chat with AI
+                <MessageCircle className="ml-2 w-5 h-5" />
               </button>
               <a 
                 href="https://calendly.com/anasmobin0/30min" 

@@ -84,13 +84,23 @@
   <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-200 antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-300">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
-    <!-- Retell AI Widget Script -->
-    <script
-      id="retell-widget"
-      src="https://dashboard.retellai.com/retell-widget.js"
-      data-public-key="key_40f9c36a9974af62e9a10b44bbd9"
-      data-agent-id="agent_4b475693748c54c0eceb95fd0b"
-      data-show-badge="false"
-    ></script>
+    
+    <!-- Chat Widget Embed -->
+    <div id="cd-widget"></div>
+    <script>
+      (function() {
+          if (window.chatWidgetScriptLoaded) return;
+          window.ChatWidgetConfig = {
+            agentId: "696b994a6f8ec8d97dcb84da", 
+          };
+
+          var chatWidgetScript = document.createElement("script");
+          chatWidgetScript.type = 'text/javascript';
+          chatWidgetScript.src = "https://storage.googleapis.com/cdwidget/dist/assets/js/main.js";
+          document.body.appendChild(chatWidgetScript);
+
+          window.chatWidgetScriptLoaded = true;
+      })();
+    </script>
   </body>
 </html>

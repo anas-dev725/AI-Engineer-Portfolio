@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bot, Zap, Database, Mic, Terminal, Workflow, Code, Sparkles, MessageSquareQuote, Heart, MousePointer2, Phone, AudioWaveform } from 'lucide-react';
+import { Bot, Zap, Database, Mic, Terminal, Workflow, Code, Sparkles, MessageSquareQuote, Heart, MousePointer2, Phone, AudioWaveform, MessageCircle } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const handleScrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -17,20 +17,13 @@ const Hero: React.FC = () => {
     }
   };
 
-  const handleCallAgent = () => {
-    // Access the RetellWidget object
-    const retell = (window as any).RetellWidget || (window as any).retellWidget;
-    
-    if (retell) {
-      // Use startCall() specifically for voice agents to avoid "Failed to create chat" error
-      if (typeof retell.startCall === 'function') {
-        retell.startCall();
-      } else if (typeof retell.open === 'function') {
-        retell.open();
-      }
-    } else {
-      console.error("RetellWidget script not loaded yet.");
-      alert("The AI Agent is initializing. Please try again in a moment.");
+  const handleChatFocus = () => {
+    // Since the widget lives in the bottom right, we can't always programmatically open it 
+    // without a specific API, but we can give a visual cue or simple alert if needed.
+    // For now, this button serves as a visual CTA pointing users to the widget.
+    const widget = document.getElementById('cd-widget');
+    if (widget) {
+        widget.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -126,10 +119,10 @@ const Hero: React.FC = () => {
             View Projects
           </a>
           <button
-            onClick={handleCallAgent}
+            onClick={handleChatFocus}
             className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-white rounded-full font-semibold transition-all border border-slate-200 dark:border-slate-700 flex items-center justify-center group hover:shadow-lg"
           >
-            Call AI Agent <Phone className="ml-2 w-4 h-4 group-hover:scale-110 transition-transform" />
+            Chat with AI <MessageCircle className="ml-2 w-4 h-4 group-hover:scale-110 transition-transform" />
           </button>
         </div>
 

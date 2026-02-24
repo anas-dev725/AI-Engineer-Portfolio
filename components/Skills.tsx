@@ -122,7 +122,7 @@ const skillsData: Skill[] = [
   { 
     name: 'Twilio', 
     category: 'Development', 
-    icon: 'https://cdn.simpleicons.org/twilio/F22F46',
+    icon: 'https://www.vectorlogo.zone/logos/twilio/twilio-icon.svg',
     color: 'border-red-500' 
   },
   

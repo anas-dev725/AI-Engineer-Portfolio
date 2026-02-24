@@ -5,6 +5,14 @@ import { Mail, BarChart3, Phone, Users, Map, Cpu, ExternalLink, Home, Calendar, 
 const projects: Project[] = [
   // SaaS Products
   {
+    title: "Propel AI",
+    description: "Propel AI is an AI-powered CRM and sales copilot for UAE real estate agents. It combines lead management, call intelligence, and property listings in one dashboard. The platform analyzes calls to generate buyer insights and property recommendations.",
+    tags: ["Supabase", "Twilio Voice SDK", "Deepgram Nova-2", "Lovable AI Gateway", "Firecrawl"],
+    icon: "home",
+    link: "https://propel-ai-platform.lovable.app/",
+    category: "SaaS Products"
+  },
+  {
     title: "PathVerse AR",
     description: "PathVerse AR is a smart indoor navigation system built for IOBM, designed to help students find their way inside the CBM, IT, and SSK buildings with ease. Using AI-powered visual recognition instead of GPS, it makes indoor navigation simple, accurate, and stress-free.",
     tags: ["React", "TypeScript", "Gemini API", "Three.js", "Vercel"],
@@ -38,6 +46,22 @@ const projects: Project[] = [
   },
 
   // AI Agents & Automation
+  {
+    title: "Recipe RAG Agent",
+    description: "An AI-powered assistant that provides recipe suggestions and cooking advice. It uses the RAG-based system to retrieve recipes from a vector database and generate accurate responses in real time.",
+    tags: ["n8n", "Pinecone", "OpenAI Embeddings", "Vector Store Retrieval"],
+    icon: "food",
+    link: "#",
+    category: "AI Agents & Automation"
+  },
+  {
+    title: "Employee Onboarding Agent",
+    description: "Automates form submissions by creating employee records and offer letters, organizing documents in Google Drive, and sending email notifications.",
+    tags: ["n8n", "Google Forms", "JavaScript", "Gmail", "Google Drive"],
+    icon: "users",
+    link: "#",
+    category: "AI Agents & Automation"
+  },
   {
     title: "Email Classifier Agent",
     description: "AI-powered agent using n8n and OpenAI that classifies emails (sponsorships vs clients), generates smart replies, and integrates with Slack/WhatsApp for high-priority alerts.",
@@ -103,22 +127,6 @@ const projects: Project[] = [
     description: "Segmentation model using Python Scikit-learn. Utilizes K-Means clustering on RFM (Recency, Frequency, Monetary) data to identify customer groups for marketing.",
     tags: ["Python", "Scikit-learn", "K-Means", "Data Science"],
     icon: "users",
-    link: "#",
-    category: "Python & Data"
-  },
-  {
-    title: "Pathfinding Simulation",
-    description: "Visual pathfinding tool using Best-First Search with Pygame. Interactive web deployment allows users to visualize algorithms in real-time.",
-    tags: ["Python", "Pygame", "Algorithms", "Web"],
-    icon: "map",
-    link: "#",
-    category: "Python & Data"
-  },
-  {
-    title: "Producer-Consumer Sync",
-    description: "Multithreaded Python simulation using semaphores to demonstrate handling limited buffers, concurrency, and resource sharing.",
-    tags: ["Python", "Threading", "Concurrency", "Semaphores"],
-    icon: "cpu",
     link: "#",
     category: "Python & Data"
   }

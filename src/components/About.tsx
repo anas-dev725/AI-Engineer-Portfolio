@@ -1,5 +1,5 @@
 import React from 'react';
-import profilePic from '../src/assets/anas-pfp.png';
+import profilePic from '../assets/anas-pfp.png';
 
 const About: React.FC = () => {
   return (

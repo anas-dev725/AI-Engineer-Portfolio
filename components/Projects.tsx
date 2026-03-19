@@ -13,6 +13,14 @@ const projects: Project[] = [
     category: "SaaS Products"
   },
   {
+    title: "Narrato",
+    description: "Narrato is an AI-powered content automation SaaS that runs a full weekly publishing pipeline for founders and creators. Describe your niche once, and Narrato automatically researches trending topics, writes your newsletter, and schedules posts across Twitter/X, LinkedIn, and Instagram every week on autopilot.",
+    tags: ["n8n", "Gemini API", "Supabase", "Beehiiv", "Buffer", "Lovable"],
+    icon: "workflow",
+    link: "https://narrato-ai.lovable.app/",
+    category: "SaaS Products"
+  },
+  {
     title: "PathVerse AR",
     description: "PathVerse AR is a smart indoor navigation system built for IOBM, designed to help students find their way inside the CBM, IT, and SSK buildings with ease. Using AI-powered visual recognition instead of GPS, it makes indoor navigation simple, accurate, and stress-free.",
     tags: ["React", "TypeScript", "Gemini API", "Three.js", "Vercel"],

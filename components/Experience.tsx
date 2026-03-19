@@ -7,7 +7,7 @@ const experiences: ExperienceType[] = [
     role: "AI Automation Engineer",
     company: "Impleko AI",
     location: "Florida",
-    period: "Feb 2025 - Present",
+    period: "Feb 2025 - Jan 2026",
     achievements: [
       "Built workflow automations in n8n to design no-code solutions integrating APIs and databases.",
       "Developed AI agents and SaaS products that make complex processes run smoothly.",
@@ -18,7 +18,7 @@ const experiences: ExperienceType[] = [
     role: "Content Executive",
     company: "Impleko",
     location: "Florida",
-    period: "Aug 2024 – Present",
+    period: "Aug 2024 - Jan 2026",
     achievements: [
       "Managed content for landing pages, blogs, eBooks, case studies, and social media channels to maintain consistent brand messaging.",
       "Created ad copy and ran multiple Meta ad campaigns promoting AI agents and voice agents for engagement and conversions.",

@@ -1,5 +1,4 @@
 import React from 'react';
-import profilePic from '../src/assets/anas-pfp.png';
 
 const About: React.FC = () => {
   return (
@@ -9,7 +8,7 @@ const About: React.FC = () => {
           <div className="mb-10 lg:mb-0 relative group">
              <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition duration-500"></div>
             <img 
-              src={profilePic} 
+              src="https://raw.githubusercontent.com/anas-dev725/AI-Engineer-Portfolio/main/anas%20profile.jpeg" 
               alt="Muhammad Anas" 
               className="relative rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 w-full object-cover transform transition duration-500 group-hover:scale-[1.02]"
               onError={(e) => {

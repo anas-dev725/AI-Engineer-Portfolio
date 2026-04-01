@@ -55,6 +55,14 @@ const projects: Project[] = [
 
   // AI Agents & Automation
   {
+    title: "Multi-Platform Content Automation Agent",
+    description: "An AI content generation system that researches niche-specific trending topics, generates audience-based newsletter content, and distributes it across email subscribers, Twitter/X, LinkedIn, and Instagram. Fully automates the weekly content pipeline from research to publishing.",
+    tags: ["n8n", "OpenAI", "Tavily", "Beehiiv", "Buffer", "Supabase"],
+    icon: "workflow",
+    link: "#",
+    category: "AI Agents & Automation"
+  },
+  {
     title: "Recipe RAG Agent",
     description: "An AI-powered assistant that provides recipe suggestions and cooking advice. It uses the RAG-based system to retrieve recipes from a vector database and generate accurate responses in real time.",
     tags: ["n8n", "Pinecone", "OpenAI Embeddings", "Vector Store Retrieval"],

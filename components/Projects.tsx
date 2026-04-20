@@ -3,6 +3,33 @@ import { Project } from '../types';
 import { Mail, BarChart3, Phone, Users, Map, Cpu, ExternalLink, Home, Calendar, Workflow, LayoutTemplate, UtensilsCrossed, FileCheck, BookOpen } from 'lucide-react';
 
 const projects: Project[] = [
+  // Voice AI
+  {
+    title: "Multilingual Real Estate Voice Agent",
+    description: "I built an AI sales voice agent for the Dubai property market that qualifies leads and books viewings 24/7. It naturally switches between English, Arabic, and Hindi/Urdu mid-call to match the client's tone. The agent handles everything from discovery, like budget and location, to booking property viewings directly into the calendar, for instant follow-ups for every lead.",
+    tags: ["Retell AI", "n8n", "Supabase", "Twilio", "Deepgram Nova-2", "Elevenlabs", "Cal.com"],
+    icon: "phone",
+    link: "#",
+    category: "Voice AI"
+  },
+  // Voice AI
+  {
+    title: "AI Booking Voice Receptionist for Restaurants",
+    description: "I built a 24/7 AI voice receptionist for a high-end Copenhagen restaurant to automate reservations and guest support in both Danish and English. This agent handles the entire guest journey from answering FAQs about the menu to securing real-time table bookings without any human intervention",
+    tags: ["Retell AI", "ElevenLabs", "n8n", "Supabase", "Cal.com", "Google Calendar", "Gmail", "Airtable"],
+    icon: "food",
+    link: "#",
+    category: "Voice AI"
+  },
+  // AI Agents & Automation
+  {
+    title: "Multi-Platform Content Automation Agent",
+    description: "An AI content generation system that researches niche-specific trending topics, generates audience-based newsletter content, and distributes it across email subscribers, Twitter/X, LinkedIn, and Instagram. Fully automates the weekly content pipeline from research to publishing.",
+    tags: ["n8n", "OpenAI", "Tavily", "Beehiiv", "Buffer", "Supabase"],
+    icon: "workflow",
+    link: "#",
+    category: "AI Agents & Automation"
+  },
   // SaaS Products
   {
     title: "Propel AI",
@@ -54,14 +81,6 @@ const projects: Project[] = [
   },
 
   // AI Agents & Automation
-  {
-    title: "Multi-Platform Content Automation Agent",
-    description: "An AI content generation system that researches niche-specific trending topics, generates audience-based newsletter content, and distributes it across email subscribers, Twitter/X, LinkedIn, and Instagram. Fully automates the weekly content pipeline from research to publishing.",
-    tags: ["n8n", "OpenAI", "Tavily", "Beehiiv", "Buffer", "Supabase"],
-    icon: "workflow",
-    link: "#",
-    category: "AI Agents & Automation"
-  },
   {
     title: "Recipe RAG Agent",
     description: "An AI-powered assistant that provides recipe suggestions and cooking advice. It uses the RAG-based system to retrieve recipes from a vector database and generate accurate responses in real time.",

@@ -31,7 +31,7 @@ const Hero: React.FC = () => {
   return (
     <section 
       id="hero" 
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-32 pb-24 bg-[#030303] text-white transition-colors duration-300"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-24 sm:pt-28 pb-12 sm:pb-16 bg-[#030303] text-white transition-colors duration-300"
     >
       {/* Sleek cybernetic grid system */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
@@ -53,13 +53,13 @@ const Hero: React.FC = () => {
           <div className="lg:col-span-6 flex flex-col text-left z-20 lg:pr-6">
             
             {/* Top outline pill badge with purple dot */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-semibold text-indigo-400 mb-6 tracking-wider uppercase self-start">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-semibold text-indigo-400 mb-4 tracking-wider uppercase self-start">
               <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
               <span className="text-slate-300">AI Engineer • Product Builder</span>
             </div>
 
             {/* Premium, clean headline precisely as requested */}
-            <h1 className="text-4xl sm:text-6xl lg:text-[4.6rem] xl:text-[5.2rem] font-bold tracking-tight text-white leading-[1.08] mb-6 font-sans">
+            <h1 className="text-4xl sm:text-6xl lg:text-[4.2rem] xl:text-[4.8rem] font-bold tracking-tight text-white leading-[1.08] mb-4 font-sans">
               Building <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-500 font-extrabold animate-gradient-xy">AI</span> <br />
               that works <br />
               like your <span className="text-white font-extrabold">best</span> <br />
@@ -67,7 +67,7 @@ const Hero: React.FC = () => {
             </h1>
 
             {/* Sub-headline aligning to client copy */}
-            <p className="text-slate-400 text-sm sm:text-lg leading-relaxed mb-8 max-w-2xl">
+            <p className="text-slate-400 text-sm sm:text-base lg:text-lg leading-relaxed mb-6 max-w-2xl">
               I'm Muhammad Anas, an AI engineer specializing in AI agents, Voice AI, and SaaS products that automate operations and solve real business problems.
             </p>
 
@@ -93,7 +93,7 @@ const Hero: React.FC = () => {
             </div>
 
             {/* Subtle Credibility Strip */}
-            <div className="mt-12 flex flex-col items-start gap-2 w-full overflow-hidden group">
+            <div className="mt-8 lg:mt-10 flex flex-col items-start gap-2 w-full overflow-hidden group">
               <span className="text-[12px] tracking-[0.2em] text-slate-400 font-semibold uppercase opacity-45 group-hover:opacity-75 transition-opacity duration-300">BUILDING WITH</span>
               <div className="flex flex-nowrap items-center gap-x-2.5 sm:gap-x-3.5 text-[13px] sm:text-sm text-slate-300 font-medium whitespace-nowrap opacity-65 group-hover:opacity-90 transition-opacity duration-300">
                 <span>OpenAI</span>
@@ -113,7 +113,7 @@ const Hero: React.FC = () => {
           </div>
 
           {/* RIGHT COLUMN: Large showcase robot with customized orbital graphic, subtle depth and left translation */}
-          <div className="lg:col-span-6 relative flex justify-center lg:justify-end items-center h-full min-h-[550px] lg:min-h-[720px] lg:-translate-x-[20px] xl:-translate-x-[40px] z-10 select-none">
+          <div className="lg:col-span-6 relative flex justify-center lg:justify-end items-center h-full min-h-[420px] lg:min-h-[560px] xl:min-h-[600px] lg:-translate-x-[20px] xl:-translate-x-[40px] z-10 select-none">
             
             {/* Blurred ambient depth blurs & light specifically layered behind the robot */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
@@ -216,7 +216,7 @@ const Hero: React.FC = () => {
                   src={imgSrc}
                   onError={handleImageError}
                   alt="Muhammad Anas - AI Hero Asset"
-                  className="w-full h-auto max-h-[92vh] lg:max-h-[100vh] xl:max-h-[108vh] object-contain select-none pointer-events-none drop-shadow-[0_0_80px_rgba(139,92,246,0.25)] scale-115 lg:scale-120 xl:scale-125 transition-transform duration-500"
+                  className="w-full h-auto max-h-[75vh] lg:max-h-[80vh] object-contain select-none pointer-events-none drop-shadow-[0_0_80px_rgba(139,92,246,0.25)] scale-115 lg:scale-120 xl:scale-125 transition-transform duration-500"
                   style={{
                     maskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 70%)',
                     WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 70%)',

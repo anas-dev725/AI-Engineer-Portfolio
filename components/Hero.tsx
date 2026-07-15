@@ -31,20 +31,20 @@ const Hero: React.FC = () => {
   return (
     <section 
       id="hero" 
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-24 sm:pt-28 pb-12 sm:pb-16 bg-[#030303] text-white transition-colors duration-300"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-24 sm:pt-28 pb-12 sm:pb-16 bg-slate-50 dark:bg-[#030303] text-slate-900 dark:text-white transition-colors duration-300"
     >
       {/* Sleek cybernetic grid system */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
       
       {/* Atmospheric deep violet/purple radial glowing backdrops behind the robot */}
-      <div className="absolute right-[-10%] top-[20%] w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[130px] pointer-events-none select-none"></div>
-      <div className="absolute right-[15%] top-[40%] w-[400px] h-[400px] bg-indigo-600/15 rounded-full blur-[110px] pointer-events-none select-none"></div>
-      <div className="absolute left-[-5%] top-[10%] w-[300px] h-[300px] bg-indigo-500/5 rounded-full blur-[90px] pointer-events-none select-none"></div>
+      <div className="absolute right-[-10%] top-[20%] w-[600px] h-[600px] bg-purple-600/5 dark:bg-purple-600/10 rounded-full blur-[130px] pointer-events-none select-none"></div>
+      <div className="absolute right-[15%] top-[40%] w-[400px] h-[400px] bg-indigo-600/5 dark:bg-indigo-600/15 rounded-full blur-[110px] pointer-events-none select-none"></div>
+      <div className="absolute left-[-5%] top-[10%] w-[300px] h-[300px] bg-indigo-500/5 dark:bg-indigo-500/5 rounded-full blur-[90px] pointer-events-none select-none"></div>
 
       {/* Blueprint grid coordinates (+) */}
-      <div className="absolute top-[18%] left-[5%] text-slate-700/40 font-mono text-xs select-none pointer-events-none">+</div>
-      <div className="absolute top-[25%] right-[10%] text-slate-700/40 font-mono text-xs select-none pointer-events-none">+</div>
-      <div className="absolute bottom-[20%] left-[15%] text-slate-700/40 font-mono text-xs select-none pointer-events-none">+</div>
+      <div className="absolute top-[18%] left-[5%] text-slate-300/40 dark:text-slate-700/40 font-mono text-xs select-none pointer-events-none">+</div>
+      <div className="absolute top-[25%] right-[10%] text-slate-300/40 dark:text-slate-700/40 font-mono text-xs select-none pointer-events-none">+</div>
+      <div className="absolute bottom-[20%] left-[15%] text-slate-300/40 dark:text-slate-700/40 font-mono text-xs select-none pointer-events-none">+</div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -53,21 +53,21 @@ const Hero: React.FC = () => {
           <div className="lg:col-span-6 flex flex-col text-left z-20 lg:pr-6">
             
             {/* Top outline pill badge with purple dot */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-semibold text-indigo-400 mb-4 tracking-wider uppercase self-start">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/5 dark:bg-indigo-500/10 border border-indigo-500/10 dark:border-indigo-500/20 text-xs font-semibold text-indigo-600 dark:text-indigo-400 mb-4 tracking-wider uppercase self-start">
               <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
-              <span className="text-slate-300">AI Engineer • Product Builder</span>
+              <span className="text-slate-600 dark:text-slate-300">AI Engineer • Product Builder</span>
             </div>
 
             {/* Premium, clean headline precisely as requested */}
-            <h1 className="text-4xl sm:text-6xl lg:text-[4.2rem] xl:text-[4.8rem] font-bold tracking-tight text-white leading-[1.08] mb-4 font-sans">
-              Building <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-500 font-extrabold animate-gradient-xy">AI</span> <br />
+            <h1 className="text-4xl sm:text-6xl lg:text-[4.2rem] xl:text-[4.8rem] font-bold tracking-tight text-slate-900 dark:text-white leading-[1.08] mb-4 font-sans">
+              Building <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-500 font-extrabold animate-gradient-xy">AI</span> <br />
               that works <br />
-              like your <span className="text-white font-extrabold">best</span> <br />
-              <span className="text-white font-extrabold">employee.</span>
+              like your <span className="text-slate-900 dark:text-white font-extrabold">best</span> <br />
+              <span className="text-slate-900 dark:text-white font-extrabold">employee.</span>
             </h1>
 
             {/* Sub-headline aligning to client copy */}
-            <p className="text-slate-400 text-sm sm:text-base lg:text-lg leading-relaxed mb-6 max-w-2xl">
+            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base lg:text-lg leading-relaxed mb-6 max-w-2xl">
               I'm Muhammad Anas, an AI engineer specializing in AI agents, Voice AI, and SaaS products that automate operations and solve real business problems.
             </p>
 
@@ -85,27 +85,27 @@ const Hero: React.FC = () => {
                 href="https://calendly.com/anasmobin0"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-7 py-4 bg-transparent border border-slate-800 hover:border-slate-700 hover:bg-white/5 text-slate-300 hover:text-white rounded-xl font-bold transition-all duration-300 text-sm"
+                className="inline-flex items-center gap-2 px-7 py-4 bg-transparent border border-slate-300 dark:border-slate-800 hover:border-slate-400 dark:hover:border-slate-700 hover:bg-slate-100 dark:hover:bg-white/5 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white rounded-xl font-bold transition-all duration-300 text-sm"
               >
-                <Phone size={14} className="text-purple-400" />
+                <Phone size={14} className="text-indigo-500 dark:text-purple-400" />
                 <span>Book a Call</span>
               </a>
             </div>
 
             {/* Subtle Credibility Strip */}
             <div className="mt-8 lg:mt-10 flex flex-col items-start gap-2 w-full overflow-hidden group">
-              <span className="text-[12px] tracking-[0.2em] text-slate-400 font-semibold uppercase opacity-45 group-hover:opacity-75 transition-opacity duration-300">BUILDING WITH</span>
-              <div className="flex flex-nowrap items-center gap-x-2.5 sm:gap-x-3.5 text-[13px] sm:text-sm text-slate-300 font-medium whitespace-nowrap opacity-65 group-hover:opacity-90 transition-opacity duration-300">
-                <span>OpenAI</span>
-                <span className="text-slate-700 select-none">•</span>
+              <span className="text-[12px] tracking-[0.2em] text-slate-500 dark:text-slate-400 font-semibold uppercase opacity-70 dark:opacity-60 group-hover:opacity-95 dark:group-hover:opacity-85 transition-opacity duration-300">BUILDING WITH</span>
+              <div className="flex flex-nowrap items-center gap-x-2.5 sm:gap-x-3.5 text-[13px] sm:text-sm text-slate-700 dark:text-slate-300 font-medium whitespace-nowrap opacity-90 dark:opacity-80 group-hover:opacity-100 dark:group-hover:opacity-100 transition-opacity duration-300">
                 <span>Claude</span>
-                <span className="text-slate-700 select-none">•</span>
-                <span>ElevenLabs</span>
-                <span className="text-slate-700 select-none">•</span>
+                <span className="text-slate-300 dark:text-slate-700 select-none">•</span>
                 <span>n8n</span>
-                <span className="text-slate-700 select-none">•</span>
+                <span className="text-slate-300 dark:text-slate-700 select-none">•</span>
+                <span>Vapi</span>
+                <span className="text-slate-300 dark:text-slate-700 select-none">•</span>
+                <span>Retell AI</span>
+                <span className="text-slate-300 dark:text-slate-700 select-none">•</span>
                 <span>Supabase</span>
-                <span className="text-slate-700 select-none">•</span>
+                <span className="text-slate-300 dark:text-slate-700 select-none">•</span>
                 <span>Antigravity</span>
               </div>
             </div>
@@ -164,7 +164,7 @@ const Hero: React.FC = () => {
 
               {/* Particle 4 */}
               <div className="absolute bottom-[40%] right-[45%] animate-drift-slow">
-                <div className="w-1.5 h-1.5 rounded-full bg-white opacity-50 shadow-[0_0_6px_rgba(255,255,255,0.4)] animate-[pulse_5s_ease-in-out_infinite]"></div>
+                <div className="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-white opacity-50 shadow-[0_0_6px_rgba(148,163,184,0.4)] dark:shadow-[0_0_6px_rgba(255,255,255,0.4)] animate-[pulse_5s_ease-in-out_infinite]"></div>
               </div>
 
               {/* Particle 5 */}
@@ -199,7 +199,7 @@ const Hero: React.FC = () => {
 
               {/* Particle 11 (New - Pure White Sparkle) */}
               <div className="absolute top-[38%] right-[25%] animate-drift-medium [animation-delay:0.5s]">
-                <div className="w-1.5 h-1.5 rounded-full bg-white opacity-65 shadow-[0_0_8px_rgba(255,255,255,0.6)] animate-[pulse_3s_ease-in-out_infinite_0.7s]"></div>
+                <div className="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-white opacity-65 shadow-[0_0_8px_rgba(148,163,184,0.6)] dark:shadow-[0_0_8px_rgba(255,255,255,0.6)] animate-[pulse_3s_ease-in-out_infinite_0.7s]"></div>
               </div>
 
               {/* Particle 12 (New - Soft Purple Spec) */}
@@ -226,9 +226,9 @@ const Hero: React.FC = () => {
                   referrerPolicy="no-referrer"
                 />
               ) : (
-                <div className="p-8 bg-zinc-950/80 border border-zinc-900 rounded-3xl text-center flex flex-col items-center">
+                <div className="p-8 bg-white dark:bg-zinc-950/80 border border-slate-200 dark:border-zinc-900 rounded-3xl text-center flex flex-col items-center">
                   <Bot size={54} className="text-indigo-500 mb-3 animate-pulse" />
-                  <h4 className="font-bold text-white text-lg">AI Agent Core Online</h4>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-lg">AI Agent Core Online</h4>
                   <p className="text-xs text-slate-500 mt-2">Custom workflows running at peak efficiency.</p>
                 </div>
               )}

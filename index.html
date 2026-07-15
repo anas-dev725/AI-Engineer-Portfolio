@@ -85,22 +85,6 @@
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
     
-    <!-- Chat Widget Embed -->
-    <div id="cd-widget"></div>
-    <script>
-      (function() {
-          if (window.chatWidgetScriptLoaded) return;
-          window.ChatWidgetConfig = {
-            agentId: "696b994a6f8ec8d97dcb84da", 
-          };
 
-          var chatWidgetScript = document.createElement("script");
-          chatWidgetScript.type = 'text/javascript';
-          chatWidgetScript.src = "https://storage.googleapis.com/cdwidget/dist/assets/js/main.js";
-          document.body.appendChild(chatWidgetScript);
-
-          window.chatWidgetScriptLoaded = true;
-      })();
-    </script>
   </body>
 </html>

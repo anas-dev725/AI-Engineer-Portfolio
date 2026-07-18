@@ -131,7 +131,7 @@ const Hero: React.FC = () => {
                 0%, 100% { transform: translateY(0) translateX(0); }
                 50% { transform: translateY(-35px) translateX(-20px); }
               }
-              @keyframes drift-fast {
+               @keyframes drift-fast {
                 0%, 100% { transform: translateY(0) translateX(0); }
                 50% { transform: translateY(-45px) translateX(25px); }
               }

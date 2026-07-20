@@ -17,4 +17,5 @@ export interface Experience {
   achievements: string[];
   technologies?: string[];
   metrics?: { label: string; value: string }[];
+  summary?: string;
 }

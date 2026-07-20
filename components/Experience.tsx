@@ -10,17 +10,17 @@ const experiences: ExperienceType[] = [
     location: "Copenhagen, Denmark",
     period: "Apr 2026 - Present",
     achievements: [
-      "Design and build smart n8n automation workflows, connecting databases and AI models to make business processes run automatically.",
-      "Engineered outbound cold calling and friendly sales voice assistants for realtors using Retell AI, ElevenLabs, and n8n.",
-      "Create scalable AI products tailored for the Danish real estate and restaurant sectors to unlock new business opportunities.",
-      "Developed automated lead scraping systems to collect, clean, and sync high-quality prospect details with CRMs."
+      "Built AI voice agents for Danish restaurants and clinics that automated reservations and appointment booking through Cal.com.",
+      "Developed an AI-powered CRM and sales copilot that unified lead management, call intelligence, and property recommendations.",
+      "Built RAG-powered assistants and internal automation tools for knowledge retrieval and employee onboarding."
     ],
-    technologies: ["n8n", "Retell AI", "ElevenLabs", "Supabase", "Cal.com", "Vapi", "Deepgram"],
+    technologies: ["n8n", "Retell AI", "ElevenLabs", "Supabase", "Telnyx"],
     metrics: [
-      { label: "Agentic Systems", value: "10+" },
-      { label: "Voice Interactions", value: "2k+" },
-      { label: "Leads Enriched", value: "5k+" }
-    ]
+      { label: "AI Systems Delivered", value: "10+" },
+      { label: "Calls Automated", value: "1K+" },
+      { label: "Leads Processed", value: "5K+" }
+    ],
+    summary: "Building AI products, voice agents, and automation systems for Danish real estate and hospitality businesses."
   },
   {
     role: "AI Automation Engineer",
@@ -28,16 +28,17 @@ const experiences: ExperienceType[] = [
     location: "Florida (office based in Karachi)",
     period: "Feb 2025 - Jan 2026",
     achievements: [
-      "Created 20+ custom n8n automations that connect databases and APIs, reducing manual tasks and work time by 85%.",
-      "Designed and launched AI agents and web workflows, increasing daily operations speed by 40%.",
+      "Built 20+ production n8n automations integrating APIs, databases, and AI services.",
+      "Developed AI agents and automation workflows for lead qualification, CRM updates, and customer communication.",
       "Built human like voice agents using Retell AI, VAPI, and ElevenLabs to qualify over 1k customer calls."
     ],
-    technologies: ["n8n", "OpenAI SDK", "VAPI", "ElevenLabs", "Retell AI", "Python", "REST APIs", "PostgreSQL", "System Integration"],
+    technologies: ["n8n", "OpenAI SDK", "VAPI", "Twilio", "Deepgram"],
     metrics: [
       { label: "Automations", value: "20+" },
-      { label: "Integrations", value: "15+" },
-      { label: "Conversations", value: "1k+" }
-    ]
+      { label: "API Integrations", value: "15+" },
+      { label: "AI Conversations", value: "1k+" }
+    ],
+    summary: "Developed AI automation solutions that connected business systems and voice assistants into production workflows."
   },
   {
     role: "Content Executive",
@@ -50,12 +51,13 @@ const experiences: ExperienceType[] = [
       "Streamlined content publishing on WordPress and Sanity CMS, speeding up web updates by 30%.",
       "Analyzed website traffic and user behavior to improve layouts, increasing signups and clicks by 15%."
     ],
-    technologies: ["WordPress", "Sanity CMS", "Meta Ads Manager", "Google Analytics", "UX/UI Research", "Copywriting", "A/B Testing"],
+    technologies: ["WordPress", "Sanity CMS", "Meta Ads Manager", "Google Analytics", "Copywriting"],
     metrics: [
       { label: "Traffic Growth", value: "65%" },
       { label: "Landing Pages", value: "40+" },
       { label: "Campagns", value: "15+" }
-    ]
+    ],
+    summary: "Leading content creation, copywriting, and digital marketing strategies to boost product engagement and traffic."
   }
 ];
 
@@ -213,6 +215,12 @@ const Experience: React.FC = () => {
                         {exp.location}
                       </span>
                     </div>
+
+                    {exp.summary && (
+                      <p className="mt-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium border-l-2 border-indigo-500/30 pl-3 italic">
+                        {exp.summary}
+                      </p>
+                    )}
                   </div>
 
                   {/* High Fidelity Performance Metrics with Counter Animation */}
@@ -254,11 +262,11 @@ const Experience: React.FC = () => {
                   )}
                 </div>
 
-                {/* RIGHT COLUMN: Key Contributions / Impact Statements (7/12 cols) */}
-                <div className="lg:col-span-7 space-y-6 lg:pl-12 lg:border-l border-slate-100 dark:border-slate-900">
+                {/* RIGHT COLUMN: Selected Impact / Impact Statements (7/12 cols) */}
+                <div className="lg:col-span-7 space-y-6 lg:pl-12 lg:border-l border-slate-100 dark:border-slate-900 lg:pt-14">
                   <div className="space-y-4">
                     <h4 className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
-                      <Layers size={12} className="text-indigo-500" /> Key Contributions
+                      <Layers size={12} className="text-indigo-500" /> Selected Impact
                     </h4>
                     <ul className="space-y-5">
                       {exp.achievements.map((achievement, i) => (

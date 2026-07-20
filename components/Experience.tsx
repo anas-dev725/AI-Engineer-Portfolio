@@ -15,34 +15,34 @@ const experiences: ExperienceType[] = [
       "Create scalable AI products tailored for the Danish real estate and restaurant sectors to unlock new business opportunities.",
       "Developed automated lead scraping systems to collect, clean, and sync high-quality prospect details with CRMs."
     ],
-    technologies: ["n8n", "Retell AI", "ElevenLabs", "APIs", "Data Scraping", "AI Agents", "Product Ideation", "System Architecture"],
+    technologies: ["n8n", "Retell AI", "ElevenLabs", "Supabase", "Cal.com", "Vapi", "Deepgram"],
     metrics: [
-      { label: "Pipelines Crafted", value: "25+" },
+      { label: "Agentic Systems", value: "10+" },
       { label: "Voice Interactions", value: "2k+" },
-      { label: "Leads Enriched", value: "10k+" }
+      { label: "Leads Enriched", value: "5k+" }
     ]
   },
   {
     role: "AI Automation Engineer",
     company: "Impleko AI",
-    location: "Florida (Remote)",
+    location: "Florida (office based in Karachi)",
     period: "Feb 2025 - Jan 2026",
     achievements: [
-      "Created 30+ custom n8n automations that connect databases and APIs, reducing manual tasks and work time by 85%.",
-      "Designed and launched intelligent AI agents and web workflows, increasing daily operations speed by 40%.",
-      "Built fast-responding, helpful voice agents using Retell AI, VAPI, and ElevenLabs to qualify over 1k customer calls."
+      "Created 20+ custom n8n automations that connect databases and APIs, reducing manual tasks and work time by 85%.",
+      "Designed and launched AI agents and web workflows, increasing daily operations speed by 40%.",
+      "Built human like voice agents using Retell AI, VAPI, and ElevenLabs to qualify over 1k customer calls."
     ],
     technologies: ["n8n", "OpenAI SDK", "VAPI", "ElevenLabs", "Retell AI", "Python", "REST APIs", "PostgreSQL", "System Integration"],
     metrics: [
-      { label: "Efficiency Gained", value: "85%" },
-      { label: "Throughput Boost", value: "40%" },
-      { label: "Conversations Qual.", value: "1k+" }
+      { label: "Automations", value: "20+" },
+      { label: "Integrations", value: "15+" },
+      { label: "Conversations", value: "1k+" }
     ]
   },
   {
     role: "Content Executive",
     company: "Impleko",
-    location: "Florida (Remote)",
+    location: "Florida (office based in Karachi)",
     period: "Aug 2024 - Jan 2026",
     achievements: [
       "Wrote clear and engaging copy for landing pages, tech blogs, and case studies, boosting website views by 65%.",
@@ -53,8 +53,8 @@ const experiences: ExperienceType[] = [
     technologies: ["WordPress", "Sanity CMS", "Meta Ads Manager", "Google Analytics", "UX/UI Research", "Copywriting", "A/B Testing"],
     metrics: [
       { label: "Traffic Growth", value: "65%" },
-      { label: "Meta Ads ROI", value: "3.8x" },
-      { label: "Deploy Latency", value: "-30%" }
+      { label: "Landing Pages", value: "40+" },
+      { label: "Campagns", value: "15+" }
     ]
   }
 ];

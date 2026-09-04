@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bot, Heart, Mic, MousePointer2, Zap, Code2, Globe } from 'lucide-react';
+import { Bot, Heart, Mic, MousePointer2, Cpu, Code2, Globe, Terminal } from 'lucide-react';
 
 interface Skill {
   name: string;
@@ -16,6 +16,42 @@ const skillsData: Skill[] = [
     category: 'Automation', 
     icon: 'https://cdn.simpleicons.org/n8n/FF6584',
     color: 'border-pink-500' 
+  },
+  { 
+    name: 'Make.com', 
+    category: 'Automation', 
+    icon: 'https://cdn.simpleicons.org/make/6D00CC',
+    fallbackIcon: (
+      <svg role="img" viewBox="0 0 24 24" className="w-8 h-8 text-[#6D00CC] fill-current" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.82 15.66l-4.14-2.4V8.46l4.14 2.4v4.8zM12 7.32L7.86 9.72l4.14 2.4 4.14-2.4L12 7.32zM6.18 10.86l4.14 2.4v4.8l-4.14-2.4v-4.8z"/>
+      </svg>
+    ),
+    color: 'border-purple-600' 
+  },
+  { 
+    name: 'Zapier', 
+    category: 'Automation', 
+    icon: 'https://cdn.simpleicons.org/zapier/FF4A00',
+    fallbackIcon: (
+      <svg role="img" viewBox="0 0 24 24" className="w-8 h-8 text-[#FF4A00] fill-current" xmlns="http://www.w3.org/2000/svg">
+        <path d="m5.215 15.684-1.284 3.037L0 17.555l2.42-2.222zm10.742-9.458 1.488-3.036L21.411 4.5l-2.624 2.22zm2.08 7.348 3.535.539L24 17.371l-3.376-1.127zm-14.935-3.038L0 9.877l.794-3.414 3.528 1.135zM12.023 0l2.378 2.502-1.288 3.253-2.378-2.502zm-.045 18.246 2.378 2.501L13.068 24l-2.378-2.502zM7.94 8.283h8.12v7.435H7.94z"/>
+      </svg>
+    ),
+    color: 'border-orange-500' 
+  },
+  { 
+    name: 'Antigravity', 
+    category: 'AI Platform', 
+    fallbackIcon: (
+      <div className="relative flex items-center justify-center w-8 h-8 md:w-10 md:h-10">
+        <svg viewBox="0 0 24 24" className="w-8 h-8 text-indigo-500 dark:text-indigo-400 fill-none stroke-current" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="3" className="fill-indigo-500/30" />
+          <ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(-30 12 12)" />
+          <ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(30 12 12)" />
+        </svg>
+      </div>
+    ),
+    color: 'border-indigo-500' 
   },
   { 
     name: 'Playwright', 
@@ -40,7 +76,7 @@ const skillsData: Skill[] = [
   { 
     name: 'Bolt', 
     category: 'No-Code', 
-    fallbackIcon: <Zap size={28} className="text-yellow-400 fill-yellow-400" />,
+    fallbackIcon: <Terminal size={28} className="text-amber-400" />,
     color: 'border-yellow-400' 
   },
   
@@ -159,6 +195,28 @@ const skillsData: Skill[] = [
   }
 ];
 
+const SkillIcon: React.FC<{ skill: Skill }> = ({ skill }) => {
+  const [imgError, setImgError] = React.useState(false);
+
+  if (skill.icon && !imgError) {
+    return (
+      <img 
+        src={skill.icon} 
+        alt={skill.name} 
+        onError={() => setImgError(true)}
+        className="w-8 h-8 md:w-10 md:h-10 object-contain filter dark:brightness-100" 
+        referrerPolicy="no-referrer"
+      />
+    );
+  }
+
+  if (skill.fallbackIcon) {
+    return <>{skill.fallbackIcon}</>;
+  }
+
+  return <Cpu size={28} className="text-indigo-500" />;
+};
+
 const Skills: React.FC = () => {
   // Split skills into two rows for the marquee effect
   const midPoint = Math.ceil(skillsData.length / 2);
@@ -217,16 +275,8 @@ const Skills: React.FC = () => {
                     mx-2
                   `}
                 >
-                  <div className="mb-3 p-2 bg-slate-50 dark:bg-slate-900 rounded-xl group-hover:shadow-inner transition-shadow">
-                    {skill.icon ? (
-                      <img 
-                        src={skill.icon} 
-                        alt={skill.name} 
-                        className="w-8 h-8 md:w-10 md:h-10 object-contain filter dark:brightness-100" 
-                      />
-                    ) : (
-                      skill.fallbackIcon
-                    )}
+                  <div className="mb-3 p-2 bg-slate-50 dark:bg-slate-900 rounded-xl group-hover:shadow-inner transition-shadow flex items-center justify-center min-w-12 min-h-12">
+                    <SkillIcon skill={skill} />
                   </div>
                   <h3 className="font-bold text-slate-800 dark:text-slate-100 text-sm md:text-base">{skill.name}</h3>
                   <span className="text-[10px] md:text-xs text-slate-500 dark:text-slate-400 font-medium bg-slate-100 dark:bg-slate-700/50 px-2 py-0.5 rounded-full mt-2">

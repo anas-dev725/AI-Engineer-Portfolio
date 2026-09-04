@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Briefcase, Calendar, MapPin, Award, ArrowRight, Code, Sparkles, Layers } from 'lucide-react';
+import { Briefcase, Calendar, MapPin, Award, ArrowRight, Code, Layers } from 'lucide-react';
 import { Experience as ExperienceType } from '../types';
 import { motion, useInView } from 'motion/react';
 
@@ -133,7 +133,7 @@ const Experience: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/60 text-slate-600 dark:text-slate-400 text-xs font-mono uppercase tracking-wider mb-4"
           >
-            <Sparkles size={11} className="text-indigo-500" />
+            <Award size={11} className="text-indigo-500" />
             Milestones & Business Impact
           </motion.div>
           <motion.h2 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Bot, Database, Sparkles, ArrowUpRight, Phone, Mic } from 'lucide-react';
+import { Bot, Database, ArrowUpRight, Phone, Mic, FileText } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const [imgSrc, setImgSrc] = useState("/assets/hero asset 16.png");
@@ -82,13 +82,14 @@ const Hero: React.FC = () => {
               </button>
 
               <a
-                href="https://calendly.com/anasmobin0"
+                href="/Muhammad%20Anas%20AI%20Automation%20Developer.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-7 py-4 bg-transparent border border-slate-300 dark:border-slate-800 hover:border-slate-400 dark:hover:border-slate-700 hover:bg-slate-100 dark:hover:bg-white/5 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white rounded-xl font-bold transition-all duration-300 text-sm"
+                download="Muhammad_Anas_AI_Automation_Developer.pdf"
+                className="inline-flex items-center gap-2 px-6 py-4 bg-transparent border border-slate-300 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-500 hover:bg-slate-100 dark:hover:bg-slate-800/60 text-slate-800 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl font-bold transition-all duration-300 text-sm shadow-sm"
               >
-                <Phone size={14} className="text-indigo-500 dark:text-purple-400" />
-                <span>Book a Call</span>
+                <FileText size={16} className="text-indigo-600 dark:text-indigo-400" />
+                <span>Resume / CV</span>
               </a>
             </div>
 

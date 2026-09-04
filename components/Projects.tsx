@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Project } from '../types';
+import { VoiceRecordingPlayer } from './VoiceRecordingPlayer';
 
 export const slugify = (text: string) => {
   return text
@@ -25,22 +26,47 @@ import {
   UtensilsCrossed, 
   FileCheck, 
   BookOpen,
-  Sparkles,
   Database,
   RefreshCw,
   Code,
-  Layers
+  Layers,
+  Mic,
+  Headphones
 } from 'lucide-react';
 
 export const projects: Project[] = [
   // Voice AI
+  {
+    title: "Inbound Dispatch Voice Agent",
+    description: "Automates inbound customer intake and scheduling triage for Austin home services (HVAC, Plumbing, Electrical), querying technician availability with 15-minute transit geo-fencing.",
+    tags: ["Retell AI", "Make.com", "TypeScript", "Google Calendar", "OSRM", "Val.town", "OpenStreetMap"],
+    icon: "phone",
+    link: "#",
+    category: "Voice AI",
+    audioDuration: "0:55",
+    audioSampleTitle: "Inbound HVAC & Plumbing Triage (Austin, TX)"
+  },
   {
     title: "Multilingual Real Estate Voice Agent",
     description: "An automated outbound voice agent that qualifies real estate leads in English, Arabic, and Hindi, automatically syncing viewings with Cal.com.",
     tags: ["Retell AI", "n8n", "Supabase", "Twilio", "Deepgram Nova-2", "Elevenlabs", "Cal.com"],
     icon: "phone",
     link: "#",
-    category: "Voice AI"
+    category: "Voice AI",
+    audioUrl: "/audio/real-estate-voice.wav",
+    audioDuration: "0:07",
+    audioSampleTitle: "Outbound Lead Qualification (Dubai Real Estate)"
+  },
+  {
+    title: "24/7 Emergency Trade Dispatcher Agent",
+    description: "Acts as an urgent first-response triage operator across the GTA: prioritizes life & property safety with immediate shut-off instructions, locks in $99 CAD dispatch fee agreements, and commits emergency Cal.com technician bookings in under 2 seconds.",
+    tags: ["Retell AI", "Cal.com", "Twilio", "Deepgram Nova-2", "Voice AI", "n8n"],
+    icon: "phone",
+    link: "#",
+    category: "Voice AI",
+    audioUrl: "/audio/emergency-trade-dispatcher.mp3",
+    audioDuration: "3:43",
+    audioSampleTitle: "Emergency Water Leak Triage & Dispatch (GTA)"
   },
   {
     title: "AI Booking Voice Receptionist for Restaurants",
@@ -48,7 +74,10 @@ export const projects: Project[] = [
     tags: ["Retell AI", "ElevenLabs", "n8n", "Supabase", "Cal.com", "Google Calendar", "Gmail", "Airtable"],
     icon: "food",
     link: "#",
-    category: "Voice AI"
+    category: "Voice AI",
+    audioUrl: "/audio/restaurant-voice.wav",
+    audioDuration: "0:06",
+    audioSampleTitle: "Table Reservation Call (Danish & English)"
   },
   // AI Agents & Automation
   {
@@ -60,6 +89,15 @@ export const projects: Project[] = [
     category: "AI Agents & Automation"
   },
   // SaaS Products
+  {
+    title: "Hisaab AI",
+    description: "An AI-powered personal finance app & smart PKR ledger engineered for Pakistan, featuring receipt OCR, bank SMS parsing, and Kameti savings tracking.",
+    tags: ["React 19", "TypeScript", "Vite 6", "Tailwind CSS v4", "Google GenAI SDK", "Gemini 3.7 Flash", "Recharts", "Express 4"],
+    icon: "chart",
+    link: "https://hisaab-ai-psi.vercel.app/",
+    category: "SaaS Products",
+    previewImage: "/assets/hisaab-ai.png"
+  },
   {
     title: "Propel AI",
     description: "A comprehensive AI CRM and sales copilot for Dubai real estate agents, featuring lead management and conversation intelligence.",
@@ -158,7 +196,10 @@ export const projects: Project[] = [
     tags: ["Vapi", "ElevenLabs", "CRM Integration", "Voice AI"],
     icon: "phone",
     link: "#",
-    category: "Voice AI"
+    category: "Voice AI",
+    audioUrl: "/audio/real-estate-voice.wav",
+    audioDuration: "0:07",
+    audioSampleTitle: "Outbound Lead Qualification Demo"
   },
   {
     title: "Property Inbound Voice Agent",
@@ -166,7 +207,10 @@ export const projects: Project[] = [
     tags: ["n8n", "Vapi", "Twilio"],
     icon: "home",
     link: "#",
-    category: "Voice AI"
+    category: "Voice AI",
+    audioUrl: "/audio/real-estate-voice.wav",
+    audioDuration: "0:07",
+    audioSampleTitle: "Inbound Buyer Booking Call"
   },
   {
     title: "Healthcare Voice Agent",
@@ -174,7 +218,10 @@ export const projects: Project[] = [
     tags: ["n8n", "Calendly", "ElevenLabs", "Twilio"],
     icon: "calendar",
     link: "#",
-    category: "Voice AI"
+    category: "Voice AI",
+    audioUrl: "/audio/restaurant-voice.wav",
+    audioDuration: "0:06",
+    audioSampleTitle: "Patient Clinic Intake Call"
   },
 
   // Python & Data
@@ -206,6 +253,13 @@ interface FlowStage {
 
 // Master flow structures for every single project
 const STAGE_FLOWS: Record<string, FlowStage[]> = {
+  "Inbound Dispatch Voice Agent": [
+    { phase: "Trade Triage", log: "RETELL_AI: Inbound call from Austin, TX. Conversational intake diagnosing HVAC issue...", visualType: "voice-wave", visualData: { text: "Caller: Our AC unit stopped blowing cold air and is rattling...", side: "client" } },
+    { phase: "Address Geo", log: "NOMINATIM: Geocoding street address '2410 S Congress Ave, Austin, TX' to lat/long coordinates...", visualType: "crawler", visualData: { query: "2410 S Congress Ave, Austin, TX" } },
+    { phase: "OSRM Transit", log: "OSRM: Calculating road network transit duration from prior job: 11.4 mins (< 15 min limit)...", visualType: "scraper", visualData: { target: "OSRM Road Router", profile: "Transit: 11.4 mins (APPROVED)" } },
+    { phase: "Slot Engine", log: "VAL.TOWN: Evaluating 14-day horizon & 1-out-of-2-hour window rule for HVAC Tech (tech3@)...", visualType: "calendar", visualData: { status: "checking", slot: "Wednesday 10:00 AM - 12:00 PM" } },
+    { phase: "Dispatch Ready", log: "SYSTEM: Candidate slots presented to caller. Ticket queued for human dispatch confirmation.", visualType: "success", visualData: { title: "Triage Handoff Ready", details: "HVAC slots generated for Ufound Mechanical" } }
+  ],
   "Multilingual Real Estate Voice Agent": [
     { phase: "Trigger Call", log: "SYSTEM: Triggering outbound Twilio SIP voice trunk...", visualType: "voice-dial", visualData: { phone: "+971 50 123 4567", lang: "EN / AR / HI" } },
     { phase: "STT Listening", log: "DEEPGRAM: Transcribing client speech stream in real-time...", visualType: "voice-wave", visualData: { text: "Client (Hindi): जी, ३ BHK का क्या प्राइस होगा?", side: "client" } },
@@ -344,6 +398,30 @@ const STAGE_FLOWS: Record<string, FlowStage[]> = {
 // Stateful Preview Simulator Component
 export const ProjectPreview: React.FC<{ project: Project }> = ({ project }) => {
   const [stage, setStage] = useState(0);
+
+  // If the project provides a custom preview image, render it directly
+  if (project.previewImage) {
+    return (
+      <div className="w-full h-[280px] bg-slate-950 relative overflow-hidden rounded-t-xl group/imgpreview">
+        <img 
+          src={project.previewImage} 
+          alt={project.title} 
+          className="w-full h-full object-cover object-top transition-transform duration-500 group-hover/imgpreview:scale-105"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[9px] font-mono text-slate-300 pointer-events-none">
+          <span className="bg-slate-950/80 backdrop-blur-md px-2 py-1 rounded-md border border-slate-800 text-slate-300 font-semibold flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            LIVE PRODUCTION PREVIEW
+          </span>
+          <span className="bg-slate-950/80 backdrop-blur-md px-2 py-1 rounded-md border border-slate-800 text-pink-400 font-semibold">
+            {project.title}
+          </span>
+        </div>
+      </div>
+    );
+  }
 
   // Automated phase transition timer (4000ms per stage)
   useEffect(() => {
@@ -1123,8 +1201,8 @@ const Projects: React.FC = () => {
                     {project.title}
                   </h3>
                   
-                  {/* Expanded 3-line description summary */}
-                  <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 min-h-[54px] sm:min-h-[64px] line-clamp-3">
+                  {/* Description summary */}
+                  <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 min-h-[54px] sm:min-h-[68px] line-clamp-4">
                     {project.description}
                   </p>
                 </div>
@@ -1150,16 +1228,27 @@ const Projects: React.FC = () => {
                     )}
                   </div>
                   
-                  {/* Custom Styled View Project Case Study */}
+                  {/* Custom Styled CTA Button */}
                   <button 
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
                       navigate(`/project/${slugify(project.title)}`);
                     }}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors group/link mt-2 text-left"
+                    className={`inline-flex items-center gap-1.5 text-xs font-semibold transition-colors group/link mt-2 text-left ${
+                      project.category === "Voice AI"
+                        ? "text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300"
+                        : "text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300"
+                    }`}
                   >
-                    <span>View Project Case Study</span>
+                    {project.category === "Voice AI" && (
+                      <Headphones size={13} className="text-emerald-500 shrink-0" />
+                    )}
+                    <span>
+                      {project.category === "Voice AI" 
+                        ? "Check Out Live Call Audio" 
+                        : "View Project Case Study"}
+                    </span>
                     <span className="transform group-hover/link:translate-x-1 transition-transform duration-300">→</span>
                   </button>
                 </div>

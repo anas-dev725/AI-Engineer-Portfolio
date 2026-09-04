@@ -7,6 +7,10 @@ export interface Project {
   icon: string;
   link: string;
   category: string;
+  audioUrl?: string;
+  audioDuration?: string;
+  audioSampleTitle?: string;
+  previewImage?: string;
 }
 
 export interface Experience {

@@ -525,65 +525,335 @@ const VOICE_PROJECT_SCRIPTS: Record<string, ScriptConfig> = {
     ]
   },
   "AI Booking Voice Receptionist for Restaurants": {
-    callTitle: "Table Reservation & High-Chair Booking Call",
-    telephonyProvider: "Telnyx + Retell AI + Deepgram Nova-2",
-    latency: "390ms Turnaround",
-    languages: ["Danish", "English"],
+    callTitle: "Inbound Dining Reservation & Table Triage (Sonder Copenhagen)",
+    telephonyProvider: "Retell AI + Deepgram Nova-2 + n8n + Airtable",
+    latency: "380ms Turnaround",
+    languages: ["English", "Danish"],
     callOutcome: {
-      action: "Table Reserved & Dietary Notes Logged",
-      system: "Google Calendar + Airtable POS Integration",
-      details: "Confirmed table for 4 guests tonight at 7:30 PM • 1 toddler high chair reserved • SMS Confirmation sent"
+      action: "Table Reserved & Dynamic Conflict Triage Solved",
+      system: "Airtable Floor Plan + Google Calendar + Email Dispatch",
+      details: "Table for 3 confirmed for Sept 16 at 4:30 PM • 5:00 PM conflict triaged to 4:30 PM • Confirmation dispatched to caller email & phone"
     },
     dialogue: [
       {
         id: 1,
         sender: 'agent',
-        speakerLabel: 'Restaurant Voice AI (Freja)',
+        speakerLabel: 'Lucas (AI Receptionist)',
         time: '0:00',
         timestampSec: 0,
-        durationSec: 5,
-        text: "Hej og velkommen til Bistro København! I can help you in Danish or English. Would you like to book a table for tonight?",
-        note: "Bilingual Danish/English Speech Engine"
+        durationSec: 9,
+        text: "Hi, thanks for calling Sonder Copenhagen. This is Lucas. I can help you book a table or answer questions about our menu. How can I help?",
+        note: "Inbound Call Handshake • Deepgram Nova-2"
       },
       {
         id: 2,
         sender: 'user',
-        speakerLabel: 'Guest (Sarah)',
-        time: '0:05',
-        timestampSec: 5,
-        durationSec: 5,
-        text: "Hi! Yes, I would love to reserve a table for 4 people tonight around 7:30 PM under the name Sarah.",
-        note: "Party Size: 4 • Time: 19:30"
+        speakerLabel: 'Alex (Caller)',
+        time: '0:09',
+        timestampSec: 9,
+        durationSec: 6,
+        text: "Yeah, hi. Actually, I wanted to book a reservation for my family.",
+        note: "Intent: Table Booking"
       },
       {
         id: 3,
         sender: 'agent',
-        speakerLabel: 'Restaurant Voice AI (Freja)',
-        time: '0:10',
-        timestampSec: 10,
-        durationSec: 6,
-        text: "Let me check our live floor availability... Great news! We have a lovely table in the heated glass veranda at 7:30 PM. Shall I confirm this for 4 guests?",
-        note: "Real-time Table Matrix Query"
+        speakerLabel: 'Lucas (AI Receptionist)',
+        time: '0:15',
+        timestampSec: 15,
+        durationSec: 8,
+        text: "Lovely. I'd be happy to get that sorted. What name should I put the reservation under?",
+        note: "Caller Identification Phase"
       },
       {
         id: 4,
         sender: 'user',
-        speakerLabel: 'Guest (Sarah)',
-        time: '0:16',
-        timestampSec: 16,
-        durationSec: 4,
-        text: "Yes please! And could we request a high chair for a toddler as well?",
-        note: "Special Request Captured"
+        speakerLabel: 'Alex (Caller)',
+        time: '0:23',
+        timestampSec: 23,
+        durationSec: 2,
+        text: "Uh, Alex.",
+        note: "Name: Alex"
       },
       {
         id: 5,
         sender: 'agent',
-        speakerLabel: 'Restaurant Voice AI (Freja)',
-        time: '0:20',
-        timestampSec: 20,
+        speakerLabel: 'Lucas (AI Receptionist)',
+        time: '0:25',
+        timestampSec: 25,
+        durationSec: 5,
+        text: "Let me just read that back: A-L-E-X. Is that right?",
+        note: "Acoustic Readback Verification"
+      },
+      {
+        id: 6,
+        sender: 'user',
+        speakerLabel: 'Alex (Caller)',
+        time: '0:30',
+        timestampSec: 30,
+        durationSec: 2,
+        text: "Yeah, it's right.",
+        note: "Caller Confirmed"
+      },
+      {
+        id: 7,
+        sender: 'agent',
+        speakerLabel: 'Lucas (AI Receptionist)',
+        time: '0:32',
+        timestampSec: 32,
+        durationSec: 4,
+        text: "Perfect, Alex. And how many guests will be joining you?",
+        note: "Party Size Extraction"
+      },
+      {
+        id: 8,
+        sender: 'user',
+        speakerLabel: 'Alex (Caller)',
+        time: '0:36',
+        timestampSec: 36,
+        durationSec: 3,
+        text: "I think it will be just three of us.",
+        note: "Party Size: 3"
+      },
+      {
+        id: 9,
+        sender: 'agent',
+        speakerLabel: 'Lucas (AI Receptionist)',
+        time: '0:39',
+        timestampSec: 39,
+        durationSec: 5,
+        text: "Lovely, a table for three, nice. And what date were you thinking?",
+        note: "Date Query"
+      },
+      {
+        id: 10,
+        sender: 'user',
+        speakerLabel: 'Alex (Caller)',
+        time: '0:44',
+        timestampSec: 44,
+        durationSec: 3,
+        text: "I was thinking maybe tomorrow.",
+        note: "Relative Date Expression"
+      },
+      {
+        id: 11,
+        sender: 'agent',
+        speakerLabel: 'Lucas (AI Receptionist)',
+        time: '0:47',
+        timestampSec: 47,
+        durationSec: 5,
+        text: "Oh, tomorrow. Let me make sure we can get you in. And what time works best for you?",
+        note: "Time Slot Inquiry"
+      },
+      {
+        id: 12,
+        sender: 'user',
+        speakerLabel: 'Alex (Caller)',
+        time: '0:52',
+        timestampSec: 52,
+        durationSec: 3,
+        text: "Uh, I think 5:00 p.m.",
+        note: "Target Slot: 17:00"
+      },
+      {
+        id: 13,
+        sender: 'agent',
+        speakerLabel: 'Lucas (AI Receptionist)',
+        time: '0:55',
+        timestampSec: 55,
+        durationSec: 12,
+        text: "Let me just check availability for tomorrow at 5:00 p.m. Hmm, it looks like 5:00 p.m. tomorrow is fully booked, unfortunately. Would a slightly different time work, maybe a bit earlier or later?",
+        note: "Airtable Availability Check • Fully Booked Triage"
+      },
+      {
+        id: 14,
+        sender: 'user',
+        speakerLabel: 'Alex (Caller)',
+        time: '1:07',
+        timestampSec: 67,
+        durationSec: 3,
+        text: "How about 5:30?",
+        note: "Alternative Inquired"
+      },
+      {
+        id: 15,
+        sender: 'agent',
+        speakerLabel: 'Lucas (AI Receptionist)',
+        time: '1:10',
+        timestampSec: 70,
+        durationSec: 13,
+        text: "5:30 is just outside the available slots, but we do have availability at 4:30 or from 6:30 onwards tomorrow. Would either of those work for you?",
+        note: "Dynamic Slot Negotiation (4:30 PM & 6:30 PM Open)"
+      },
+      {
+        id: 16,
+        sender: 'user',
+        speakerLabel: 'Alex (Caller)',
+        time: '1:23',
+        timestampSec: 83,
+        durationSec: 4,
+        text: "Uh, can we go with 4:30?",
+        note: "Slot Selection: 16:30"
+      },
+      {
+        id: 17,
+        sender: 'agent',
+        speakerLabel: 'Lucas (AI Receptionist)',
+        time: '1:27',
+        timestampSec: 87,
         durationSec: 7,
-        text: "Absolutely! I have noted a toddler high chair on your reservation. Your table for 4 is confirmed for 7:30 PM tonight under Sarah. Vi glæder os til at se jer!",
-        note: "Airtable CRM + SMS Dispatched"
+        text: "4:30 works perfectly. Let me just confirm that for you. And what date did you want again?",
+        note: "Confirmation Loop"
+      },
+      {
+        id: 18,
+        sender: 'user',
+        speakerLabel: 'Alex (Caller)',
+        time: '1:34',
+        timestampSec: 94,
+        durationSec: 5,
+        text: "Yeah, definitely tomorrow. Uh, I think it's 16th September, right?",
+        note: "Date Locked: 16th September"
+      },
+      {
+        id: 19,
+        sender: 'agent',
+        speakerLabel: 'Lucas (AI Receptionist)',
+        time: '1:39',
+        timestampSec: 99,
+        durationSec: 10,
+        text: "Right, tomorrow is the 16th of September. Great, and what's the best email address for you to send the confirmation to?",
+        note: "Contact Intake: Email"
+      },
+      {
+        id: 20,
+        sender: 'user',
+        speakerLabel: 'Alex (Caller)',
+        time: '1:50',
+        timestampSec: 110,
+        durationSec: 3,
+        text: "Uh, aesthetic.maham@gmail.com",
+        note: "Email Captured"
+      },
+      {
+        id: 21,
+        sender: 'agent',
+        speakerLabel: 'Lucas (AI Receptionist)',
+        time: '1:54',
+        timestampSec: 114,
+        durationSec: 3,
+        text: "Got it. aesthetic.maham@gmail.com. Is that right?",
+        note: "Email Readback Verification"
+      },
+      {
+        id: 22,
+        sender: 'user',
+        speakerLabel: 'Alex (Caller)',
+        time: '1:59',
+        timestampSec: 119,
+        durationSec: 2,
+        text: "Yeah, perfect.",
+        note: "Email Confirmed"
+      },
+      {
+        id: 23,
+        sender: 'agent',
+        speakerLabel: 'Lucas (AI Receptionist)',
+        time: '2:02',
+        timestampSec: 122,
+        durationSec: 4,
+        text: "Great. And a phone number, just in case we need to reach you?",
+        note: "Phone Number Query"
+      },
+      {
+        id: 24,
+        sender: 'user',
+        speakerLabel: 'Alex (Caller)',
+        time: '2:08',
+        timestampSec: 128,
+        durationSec: 5,
+        text: "Yeah, it is 452-680-68.",
+        note: "Caller Line: 452 680 68"
+      },
+      {
+        id: 25,
+        sender: 'agent',
+        speakerLabel: 'Lucas (AI Receptionist)',
+        time: '2:14',
+        timestampSec: 134,
+        durationSec: 4,
+        text: "So, that's 452-680-68, correct?",
+        note: "Phone Number Readback"
+      },
+      {
+        id: 26,
+        sender: 'user',
+        speakerLabel: 'Alex (Caller)',
+        time: '2:20',
+        timestampSec: 140,
+        durationSec: 1,
+        text: "Yeah.",
+        note: "Phone Confirmed"
+      },
+      {
+        id: 27,
+        sender: 'agent',
+        speakerLabel: 'Lucas (AI Receptionist)',
+        time: '2:21',
+        timestampSec: 141,
+        durationSec: 9,
+        text: "Perfect. So, just to confirm: a table for three under Alex, this 16th of September at 4:30 p.m. Does that all sound right?",
+        note: "Full Booking Summary Review"
+      },
+      {
+        id: 28,
+        sender: 'user',
+        speakerLabel: 'Alex (Caller)',
+        time: '2:32',
+        timestampSec: 152,
+        durationSec: 1,
+        text: "Yeah, that's perfect.",
+        note: "Final Caller Consent"
+      },
+      {
+        id: 29,
+        sender: 'agent',
+        speakerLabel: 'Lucas (AI Receptionist)',
+        time: '2:34',
+        timestampSec: 154,
+        durationSec: 6,
+        text: "Brilliant. Give me just one moment while I lock that in for you. Logging the booking details...",
+        note: "n8n Webhook: Lock Table in Airtable POS & GCal"
+      },
+      {
+        id: 30,
+        sender: 'agent',
+        speakerLabel: 'Lucas (AI Receptionist)',
+        time: '2:43',
+        timestampSec: 163,
+        durationSec: 7,
+        text: "You're all set, Alex. Your table is booked, and I've just sent a confirmation to your email. Is there anything else I can help you with today?",
+        note: "Dispatched Confirmation Email (200 OK)"
+      },
+      {
+        id: 31,
+        sender: 'user',
+        speakerLabel: 'Alex (Caller)',
+        time: '2:54',
+        timestampSec: 174,
+        durationSec: 1,
+        text: "No, that's perfect. Thank you.",
+        note: "Caller Satisfied"
+      },
+      {
+        id: 32,
+        sender: 'agent',
+        speakerLabel: 'Lucas (AI Receptionist)',
+        time: '2:56',
+        timestampSec: 176,
+        durationSec: 5,
+        text: "Wonderful. We look forward to seeing you on the 16th. Have a great evening. Goodbye.",
+        note: "Call Wrap-Up & Graceful Hangup"
       }
     ]
   },

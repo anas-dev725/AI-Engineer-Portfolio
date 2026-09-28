@@ -444,11 +444,12 @@ const getCaseStudyDefaults = (project: Project): CaseStudyDetails => {
         }
       ],
       logs: [
-        "VAPI: [CONN] Inbound call accepted from +45 29 18 12 04.",
-        "RESERVEBOT: [TRANS] Text: 'Hej, har I ledige borde i aften?'",
-        "AIRTABLE: [QUERY] Checking dinner tables for date: 2026-07-20 at 19:30.",
-        "N8N_FLOW: [SYS] Table 4 is open. Syncing booking to Google Calendar.",
-        "GMAIL: [API] Reservation confirmation receipt dispatched to user."
+        "RETELL: [INBOUND] Call connected from +45 45 26 80 68 (Sonder Copenhagen).",
+        "DEEPGRAM: [TRANS] 'Yeah hi, actually I wanted to book a reservation for my family.'",
+        "AIRTABLE: [QUERY] Checking availability for Sept 16 at 17:00 (Party of 3) -> Fully Booked.",
+        "RETELL: [TRIAGE] Offered alternative slots: 16:30 and 18:30 -> Guest selected 16:30.",
+        "N8N_FLOW: [SYNC] Locking Table 3 at 16:30 into Airtable and Google Calendar.",
+        "GMAIL: [DISPATCH] Reservation confirmation receipt sent to guest email (Status: 200 OK)."
       ],
       techStackDetailed: [
         { name: "Retell AI", category: "Voice Pipeline", description: "Powers the primary voice reception SDK and call triggers." },
@@ -456,6 +457,86 @@ const getCaseStudyDefaults = (project: Project): CaseStudyDetails => {
         { name: "ElevenLabs", category: "Voice Synthesis", description: "Renders highly natural sounding Danish conversational voices." },
         { name: "Airtable", category: "Data Storage", description: "Tracks real-time dinner tables, guest counts, and schedules." },
         { name: "Gmail", category: "Notification Hub", description: "Dispatches elegant visual booking confirmations instantly." }
+      ]
+    };
+  }
+
+  if (title === "Automated Recruitment Ad Engine") {
+    return {
+      ...defaultDetails,
+      hook: "An end-to-end recruitment ad engine designed around a simple truth: recruiting senior builders isn't e-commerce. It handles deep candidate research, generates multi-angle hooks across 5 core emotional drivers, produces production-ready feed and video scripts, and automatically learns from Meta ad performance data.",
+      purposeSummary: "I built this project to fix a problem most recruiting agencies face: generic, boring job ads that senior developers immediately scroll past. Instead of treating job postings like discount store products, this system approaches candidates as technical peers.\n\nUsing Airtable on the front end and n8n under the hood, the pipeline transforms raw job notes into candidate personas, battle-tested ad angles, and complete scripts ready to publish. It also closes the loop: by pulling simulated Meta ad metrics, the workflow identifies which hooks hit real-world targets and automatically references those winning creative assets when writing ads for future roles.",
+      keyHighlights: [
+        "One Webhook, Zero Clutter: Rather than maintaining a tangle of endpoints, Airtable checkboxes fire a quick script to a single n8n webhook, which routes each action seamlessly with a Switch node.",
+        "Candidate-First Research: Uncovers the real stuff engineers care about—like messy legacy code, broken deployment pipelines, and honest salary bands—complete with a cheat sheet of conversation Do's and Don'ts for recruiters.",
+        "5-Pillar Angle Generation: Maps every role across 5 emotional drivers (Security & Stability, Career Growth, Work-Life Balance, High Earning Potential, Purpose & Mission) using a structured 5-part blueprint (Hook → Role → Benefits → Proof → CTA).",
+        "Ready-to-Publish Creatives: Outputs both punchy technical Feed Ads and 45–60s Short Video Scripts (VSLs) complete with staging and visual cues.",
+        "Self-Improving Feedback Loop: Evaluates active ad performance and automatically tags winners so future job postings can build on proven hooks."
+      ],
+      problem: "Most recruiting agencies and tech companies run generic, corporate-buzzword job ads that senior engineers immediately scroll past. Without deep technical empathy—addressing real concerns like tech debt, release bottlenecks, and candid salary bands—companies burn ad budgets on unqualified applicants with zero systematic feedback loop to improve future creative assets.",
+      solution: "Engineered a closed-loop recruitment ad pipeline integrating Airtable with n8n and OpenAI GPT-4o. The system turns messy job requirements into empathetic developer personas, generates 5 distinct emotional ad angles with battle-tested copy blueprints, produces formatted Feed Ads and 45-60s VSL scripts with staging notes, and automatically processes Meta ad conversion data to continuously reuse winning hooks.",
+      features: [
+        { title: "One Webhook, Zero Clutter", desc: "A single n8n webhook handles multiple recruiter checkbox actions via an intelligent Switch router.", iconName: "Workflow" },
+        { title: "Candidate-First Persona Research", desc: "Uncovers developer pain points (legacy code, broken CI/CD) and compiles a recruiter Do's/Don'ts guide.", iconName: "Bot" },
+        { title: "5-Pillar Angle Blueprint", desc: "Maps roles across Security, Growth, Balance, High Earning, and Purpose via Hook → Role → Benefits → Proof → CTA.", iconName: "Layers" },
+        { title: "Ready-to-Publish Creatives", desc: "Formats technical Feed Ads and 45-60s Short Video Scripts (VSLs) complete with visual staging cues.", iconName: "Monitor" },
+        { title: "Self-Improving Feedback Loop", desc: "Ingests Meta Graph API metrics (omni_complete_registration) and automatically tags winning hooks for future roles.", iconName: "TrendingUp" },
+        { title: "JavaScript Code Node Engineering", desc: "Custom code nodes handle array unnesting, custom math formulas, division-by-zero safeguards, and data normalization.", iconName: "Code" }
+      ],
+      howItWorksSteps: [
+        { step: "01", title: "Intake & Single Webhook Trigger", desc: "Recruiter checks a trigger box in Airtable. A concise script calls a single n8n webhook, which routes execution cleanly through a Switch node." },
+        { step: "02", title: "Peer-Level Research & Angle Mapping", desc: "GPT-4o extracts technical builder pain points and drafts 5 structured angles across core emotional drivers directly into Airtable." },
+        { step: "03", title: "Creative Synthesis & Closed Loop", desc: "Code nodes compile Feed Ads and VSL scripts with cues, while Meta Graph API performance data tags high-converting winners for next-gen roles." }
+      ],
+      metrics: [
+        { label: "5 Core", value: "Emotional Pillars", desc: "Security, Growth, Balance, High Earning, Purpose" },
+        { label: "1 Webhook", value: "Zero Clutter", desc: "Centralized n8n switch routing across 4 tables" },
+        { label: "Closed Loop", value: "Auto-Feedback", desc: "Tags winning Meta ad hooks to train future copy" }
+      ],
+      comparisons: [
+        {
+          metric: "Copy Positioning",
+          before: "Generic corporate buzzwords treated like e-commerce discount products",
+          after: "Peer-to-peer technical framing addressing real developer friction",
+          impact: "Captures passive senior builders"
+        },
+        {
+          metric: "Production Turnaround",
+          before: "3 to 5 hours per role manually brainstorming hooks, angles, and video scripts",
+          after: "Under 60 seconds to generate 5 angles, feed ads, and staged VSL scripts",
+          impact: "90% time saved per role"
+        },
+        {
+          metric: "Creative Optimization",
+          before: "Zero feedback loop; past campaign learnings lost across scattered ad accounts",
+          after: "Simulated Meta Graph API reporting automatically surfaces top hooks",
+          impact: "Compound creative improvement"
+        },
+        {
+          metric: "Architecture Cleanliness",
+          before: "Tangle of disparate endpoints prone to broken triggers and sync conflicts",
+          after: "Single webhook router connected to 4 relational Airtable tables",
+          impact: "100% reliable data flow"
+        }
+      ],
+      logs: [
+        "AIRTABLE: [TRIGGER] Recruiter checked 'Generate Research & Angles' on Role ID #8042.",
+        "N8N_SWITCH: [ROUTER] Payload routed to Branch 1: Candidate Persona & Pain Point Extraction.",
+        "GPT_4O: [RESEARCH] Analyzing role notes -> Identified core dev friction: manual release cycles & lack of autonomy.",
+        "5_PILLAR_ENGINE: [GENERATE] Produced 5 angles: Security, Career Growth, Work-Life, Earning, Mission.",
+        "CODE_NODE: [JS] Unnested response arrays, sanitized null values & calculated metric ratios.",
+        "AIRTABLE: [SYNC] Populated 5 records in 'Job Ad Angles' and drafted 2 VSL video scripts.",
+        "META_GRAPH_API: [PULL] Parsed omni_complete_registration metrics -> Tagged Angle #3 as 'Winner' (CPA: $14.20)."
+      ],
+      techStackDetailed: [
+        { name: "n8n Canvas", category: "Workflow Orchestration", description: "Powers the whole automation engine, handling centralized routing, data parsing, and multi-branch execution in one clean canvas." },
+        { name: "Airtable", category: "Relational Workspace", description: "Serves as the friendly recruiter workspace across 4 relational tables (Job Roles, Job Ad Angles, Job Ad Scripts, Job Ad Performance)." },
+        { name: "OpenAI (GPT-4o)", category: "AI Intelligence & Copy", description: "Drives the research and copy, trained with strict rules to avoid corporate buzzwords and focus on real engineering pain points." },
+        { name: "JavaScript (Code Nodes)", category: "Data Engineering", description: "Handles array unnesting, custom math formulas, division-by-zero safeguards, and data normalization." },
+        { name: "Meta Graph API Schema", category: "Analytics Feedback", description: "Simulates live Meta ad reporting, cleanly unpacking nested conversion action arrays (omni_complete_registration) and string-based numbers." }
+      ],
+      screenshots: [
+        "/assets/Recruiting Job Ads Automation Engine.png"
       ]
     };
   }
@@ -1302,6 +1383,7 @@ export const CaseStudyPage: React.FC = () => {
 
   // Screenshots slider / gallery index
   const [activeScreenshotIndex, setActiveScreenshotIndex] = useState(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const project = projects.find(p => slugify(p.title) === slug);
@@ -1317,11 +1399,13 @@ export const CaseStudyPage: React.FC = () => {
         const parsed = JSON.parse(stored);
         const defaults = getCaseStudyDefaults(project);
         
-        // Ensure properties exist, particularly screenshots
+        // Ensure properties exist, particularly screenshots (empty array must be respected)
         const merged: CaseStudyDetails = {
           ...defaults,
           ...parsed,
-          screenshots: parsed.screenshots || []
+          screenshots: Array.isArray(parsed.screenshots) 
+            ? parsed.screenshots 
+            : (defaults.screenshots || [])
         };
         setDetails(merged);
       } catch (err) {
@@ -1413,9 +1497,15 @@ export const CaseStudyPage: React.FC = () => {
     });
   };
 
-  const handleDeleteScreenshot = (indexToDelete: number, e: React.MouseEvent) => {
-    e.stopPropagation();
-    const updated = (details.screenshots || []).filter((_, idx) => idx !== indexToDelete);
+  const handleDeleteScreenshot = (indexToDelete: number, e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    const currentList = Array.isArray(details?.screenshots)
+      ? details.screenshots
+      : (project.previewImage ? [project.previewImage] : []);
+    const updated = currentList.filter((_, idx) => idx !== indexToDelete);
     saveField('screenshots', updated);
     
     // Adjust active index if it's out of bounds
@@ -1510,7 +1600,11 @@ export const CaseStudyPage: React.FC = () => {
   };
 
   const themeColors = getThemeColorClass();
-  const screenshotCount = (details.screenshots || []).length;
+  const allScreenshots = Array.isArray(details.screenshots)
+    ? details.screenshots
+    : (project.previewImage ? [project.previewImage] : []);
+  const safeIndex = activeScreenshotIndex < allScreenshots.length ? activeScreenshotIndex : 0;
+  const screenshotCount = allScreenshots.length;
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans transition-all duration-300">
@@ -1633,13 +1727,30 @@ export const CaseStudyPage: React.FC = () => {
             {/* Comprehensive Purpose of the Project Section */}
             {details.purposeSummary && (
               <div className="mb-8 p-5 sm:p-6 bg-slate-900/70 border border-slate-800/80 rounded-2xl backdrop-blur-sm shadow-inner">
-                <div className="flex items-center gap-2 mb-2 text-emerald-400 font-mono text-xs font-bold uppercase tracking-wider">
+                <div className="flex items-center gap-2 mb-3 text-emerald-400 font-mono text-xs font-bold uppercase tracking-wider">
                   <ShieldAlert size={14} />
                   <span>Purpose of the Project</span>
                 </div>
-                <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
-                  {details.purposeSummary}
-                </p>
+                <div className="space-y-3 text-slate-200 text-sm sm:text-base leading-relaxed">
+                  {details.purposeSummary.split('\n\n').map((paragraph, idx) => (
+                    <p key={idx}>{paragraph}</p>
+                  ))}
+                </div>
+                {details.keyHighlights && details.keyHighlights.length > 0 && (
+                  <div className="mt-5 pt-4 border-t border-slate-800/80">
+                    <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
+                      Key Highlights & Architecture
+                    </p>
+                    <ul className="space-y-2">
+                      {details.keyHighlights.map((highlight, idx) => (
+                        <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
+                          <CheckCircle size={15} className="text-emerald-400 shrink-0 mt-0.5" />
+                          <span>{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             )}
 
@@ -1679,42 +1790,284 @@ export const CaseStudyPage: React.FC = () => {
           </section>
         )}
 
-        {/* 4. INTERACTIVE SYSTEM SIMULATOR OR PRODUCTION PREVIEW (FOR WORKFLOW / AUTOMATION / AI APPS) */}
-        {project.category !== "Voice AI" && (
+        {/* 4. SYSTEM ARCHITECTURE & FULL PRODUCTION SCREENSHOT SHOWCASE OR INTERACTIVE SIMULATOR */}
+        {(project.category !== "Voice AI" || project.title === "AI Booking Voice Receptionist for Restaurants" || allScreenshots.length > 0) && (
           <section className="bg-slate-900/10 border border-slate-900 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden mb-12">
             <div className="absolute inset-0 bg-dot-pattern opacity-5 pointer-events-none"></div>
-            <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
+
+            {/* Hidden file input for uploading Airtable & workflow screenshots */}
+            <input 
+              type="file" 
+              ref={fileInputRef} 
+              onChange={handleImageUpload} 
+              accept="image/*" 
+              multiple 
+              className="hidden" 
+            />
+
+            {allScreenshots.length > 0 ? (
               <div>
-                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block font-sans">
-                  {project.previewImage ? "Production Application View" : "Live System Sandbox"}
-                </span>
-                <h3 className="text-xl font-extrabold text-white flex items-center gap-2 mt-0.5 font-sans">
-                  <Terminal size={18} className={themeColors.primary} />
-                  {project.previewImage ? "Application Interface Preview" : "Interactive Live Run Simulator"}
-                </h3>
+                {/* Header */}
+                <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
+                  <div>
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block font-sans">
+                      Production Architecture & Database View
+                    </span>
+                    <h3 className="text-xl font-extrabold text-white flex items-center gap-2 mt-0.5 font-sans">
+                      <Terminal size={18} className={themeColors.primary} />
+                      {project.title === "Automated Recruitment Ad Engine" 
+                        ? "Workflow Canvas & Database Architecture" 
+                        : project.title === "AI Booking Voice Receptionist for Restaurants"
+                          ? "Voice Pipeline & Reservation Workflow Gallery"
+                          : "Application Interface Preview"}
+                    </h3>
+                  </div>
+
+                  <div className="flex items-center gap-3 flex-wrap">
+                    {/* Add More Screenshot button - Only visible in AI Studio Preview / Dev / EditMode */}
+                    {(editMode || (typeof window !== 'undefined' && (window.location.hostname.includes('localhost') || window.location.hostname.includes('127.0.0.1') || window.location.hostname.includes('ais-dev') || window.location.hostname.includes('ais-pre')))) && (
+                      <button
+                        onClick={handleFileUploadClick}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/30 text-xs font-semibold transition-all hover:scale-105"
+                        title="Add Airtable or Workflow Screenshot (Studio Preview)"
+                      >
+                        <Plus size={14} />
+                        <span>Add Screenshot</span>
+                      </button>
+                    )}
+
+                    <div className="flex items-center gap-2 bg-slate-950/60 border border-slate-900 px-3.5 py-1.5 rounded-xl">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                      <span className="text-[10px] text-slate-400 font-mono font-bold uppercase tracking-wider">
+                        Production Live System
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Main Full-Visibility Screenshot Window with Carousel Navigation */}
+                <div className="rounded-2xl border border-slate-800/80 bg-[#060913] overflow-hidden shadow-2xl relative group">
+                  {/* Window Bar */}
+                  <div className="bg-slate-950/90 border-b border-slate-800/80 px-4 py-2.5 flex items-center justify-between">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block shrink-0"></span>
+                      <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block shrink-0"></span>
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block shrink-0"></span>
+                      <span className="ml-2 text-[11px] font-mono text-slate-400 font-semibold truncate max-w-xs sm:max-w-md">
+                        {decodeURIComponent(allScreenshots[safeIndex]?.split('/').pop() || project.title)}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-2 shrink-0">
+                      {/* Delete Current Screenshot Button */}
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          handleDeleteScreenshot(safeIndex, e);
+                        }}
+                        className="px-2.5 py-1 rounded bg-red-950/80 hover:bg-red-600 text-red-300 hover:text-white transition-all text-[10px] font-mono flex items-center gap-1.5 border border-red-800/80 hover:border-red-500 shadow-sm cursor-pointer"
+                        title="Delete current screenshot"
+                      >
+                        <Trash2 size={12} />
+                        <span>Delete Image</span>
+                      </button>
+
+                      {/* Carousel Status & Next Button in Header if multiple images */}
+                      {allScreenshots.length > 1 && (
+                        <div className="flex items-center gap-1.5 mr-2">
+                          <span className="text-[10px] font-mono text-slate-400 bg-slate-900 border border-slate-800 px-2 py-0.5 rounded">
+                            {safeIndex + 1} / {allScreenshots.length}
+                          </span>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setActiveScreenshotIndex((prev) => (prev + 1) % allScreenshots.length);
+                            }}
+                            className="px-2.5 py-1 rounded bg-indigo-600/30 hover:bg-indigo-600 text-indigo-300 hover:text-white transition-all text-[10px] font-mono flex items-center gap-1 border border-indigo-500/40"
+                            title="Transition to next screenshot"
+                          >
+                            <span>Next Image</span>
+                            <ChevronRight size={12} />
+                          </button>
+                        </div>
+                      )}
+
+                      <button
+                        onClick={() => setIsLightboxOpen(true)}
+                        className="px-2 py-1 rounded bg-slate-900 text-slate-400 hover:text-white transition-colors text-[10px] font-mono flex items-center gap-1 border border-slate-800"
+                        title="View Fullscreen"
+                      >
+                        <Maximize2 size={12} />
+                        <span className="hidden sm:inline">Inspect Full Size</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Complete Full-Visibility Image with Left/Right Nav Arrows */}
+                  <div 
+                    className="w-full bg-[#04060C] flex items-center justify-center p-2 sm:p-4 relative cursor-zoom-in min-h-[300px]"
+                    onClick={() => setIsLightboxOpen(true)}
+                    title="Click to view in full resolution"
+                  >
+                    {/* Previous Image Arrow Button */}
+                    {allScreenshots.length > 1 && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveScreenshotIndex((prev) => (prev - 1 + allScreenshots.length) % allScreenshots.length);
+                        }}
+                        className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-slate-950/85 hover:bg-indigo-600 border border-slate-700 hover:border-indigo-400 text-white flex items-center justify-center shadow-xl transition-all duration-200 transform hover:scale-110 active:scale-95"
+                        title="Previous screenshot (←)"
+                      >
+                        <ChevronLeft size={20} />
+                      </button>
+                    )}
+
+                    {/* Next Image Arrow Button (Moves to the right side screenshot) */}
+                    {allScreenshots.length > 1 && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveScreenshotIndex((prev) => (prev + 1) % allScreenshots.length);
+                        }}
+                        className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-slate-950/85 hover:bg-indigo-600 border border-slate-700 hover:border-indigo-400 text-white flex items-center justify-center shadow-xl transition-all duration-200 transform hover:scale-110 active:scale-95"
+                        title="Next screenshot (→)"
+                      >
+                        <ChevronRight size={20} />
+                      </button>
+                    )}
+
+                    {/* Image with smooth fade-in transition */}
+                    <img 
+                      key={safeIndex}
+                      src={allScreenshots[safeIndex]} 
+                      alt={`${project.title} Screenshot ${safeIndex + 1}`} 
+                      className="w-full h-auto max-h-[850px] object-contain rounded-lg transition-transform duration-300 hover:scale-[1.005] animate-[fadeIn_0.3s_ease-in-out]"
+                    />
+                  </div>
+
+                  {/* Dot Indicators for Multi-Screenshot Switching */}
+                  {allScreenshots.length > 1 && (
+                    <div className="bg-slate-950/90 border-t border-slate-800/80 py-2.5 px-4 flex justify-center items-center gap-2">
+                      {allScreenshots.map((_, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setActiveScreenshotIndex(idx)}
+                          className={`h-2 rounded-full transition-all duration-300 ${
+                            idx === safeIndex 
+                              ? "w-7 bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.6)]" 
+                              : "w-2 bg-slate-700 hover:bg-slate-500"
+                          }`}
+                          title={`Jump to view ${idx + 1}`}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Multi-Screenshot Thumbnails & Switcher Row */}
+                {allScreenshots.length > 1 && (
+                  <div className="mt-4 flex items-center gap-3 overflow-x-auto pb-2">
+                    {allScreenshots.map((src, idx) => (
+                      <div key={idx} className="relative group/thumb shrink-0">
+                        <button
+                          onClick={() => setActiveScreenshotIndex(idx)}
+                          className={`relative rounded-xl overflow-hidden border-2 transition-all block w-32 h-20 bg-slate-950 text-left ${
+                            idx === safeIndex 
+                              ? "border-indigo-500 shadow-lg scale-105" 
+                              : "border-slate-800 opacity-60 hover:opacity-100"
+                          }`}
+                        >
+                          <img src={src} alt={`Thumbnail ${idx + 1}`} className="w-full h-14 object-cover object-top" />
+                          <div className="bg-slate-950/95 text-[9px] text-slate-300 px-2 py-1 truncate font-mono flex items-center justify-between">
+                            <span>{idx === 0 ? "n8n Canvas" : idx === 1 ? "Airtable Base" : `View ${idx + 1}`}</span>
+                            {idx === safeIndex && (
+                              <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+                            )}
+                          </div>
+                        </button>
+                        {/* Delete button on thumbnail */}
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            handleDeleteScreenshot(idx, e);
+                          }}
+                          className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-red-600 hover:bg-red-500 text-white flex items-center justify-center opacity-85 hover:opacity-100 group-hover/thumb:opacity-100 transition-opacity shadow-md z-10 border border-slate-900 cursor-pointer"
+                          title="Delete this screenshot"
+                        >
+                          <X size={10} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
-              <div className="flex items-center gap-2 bg-slate-950/60 border border-slate-900 px-3.5 py-1.5 rounded-xl self-start sm:self-auto">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span className="text-[10px] text-slate-400 font-mono font-bold uppercase tracking-wider">
-                  {project.previewImage ? "Production Live System" : "System Active & Listening"}
-                </span>
+            ) : (
+              <div>
+                <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
+                  <div>
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block font-sans">
+                      Production Architecture & Image Gallery
+                    </span>
+                    <h3 className="text-xl font-extrabold text-white flex items-center gap-2 mt-0.5 font-sans">
+                      <Terminal size={18} className={themeColors.primary} />
+                      {project.title === "AI Booking Voice Receptionist for Restaurants"
+                        ? "Voice Pipeline & Reservation Workflow Gallery"
+                        : "Interactive Live Run Simulator"}
+                    </h3>
+                  </div>
+
+                  <div className="flex items-center gap-3 flex-wrap">
+                    {/* Add Screenshot button - Available in Studio Preview / Dev */}
+                    {(editMode || (typeof window !== 'undefined' && (window.location.hostname.includes('localhost') || window.location.hostname.includes('127.0.0.1') || window.location.hostname.includes('ais-dev') || window.location.hostname.includes('ais-pre')))) && (
+                      <button
+                        onClick={handleFileUploadClick}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/30 text-xs font-semibold transition-all hover:scale-105"
+                        title="Add Airtable or Workflow Screenshot (Studio Preview)"
+                      >
+                        <Plus size={14} />
+                        <span>Add Screenshot</span>
+                      </button>
+                    )}
+
+                    <div className="flex items-center gap-2 bg-slate-950/60 border border-slate-900 px-3.5 py-1.5 rounded-xl self-start sm:self-auto">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                      <span className="text-[10px] text-slate-400 font-mono font-bold uppercase tracking-wider">
+                        Gallery Ready
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Upload Banner / Dropzone if empty on Restaurant project */}
+                {project.title === "AI Booking Voice Receptionist for Restaurants" ? (
+                  <div 
+                    onClick={handleFileUploadClick}
+                    className="rounded-2xl border-2 border-dashed border-slate-800 hover:border-indigo-500/60 bg-slate-950/60 hover:bg-slate-950/90 p-8 sm:p-12 flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-300 group shadow-2xl"
+                  >
+                    <div className="w-14 h-14 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-indigo-500/20 transition-all">
+                      <Plus size={26} />
+                    </div>
+                    <h4 className="text-base font-bold text-white mb-1.5">
+                      Add n8n Canvas, Airtable Table, or Retell Flow Screenshots
+                    </h4>
+                    <p className="text-xs text-slate-400 max-w-md mb-4 leading-relaxed font-light">
+                      Click here to upload PNG or JPG screenshots of your n8n workflow canvas, Airtable reservation database, or Retell voice agent flow.
+                    </p>
+                    <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-500/20 transition-all">
+                      <Plus size={14} />
+                      <span>Browse & Upload Screenshot</span>
+                    </span>
+                  </div>
+                ) : (
+                  <div className="rounded-2xl border border-slate-800/80 bg-slate-950 overflow-hidden shadow-2xl">
+                    <ProjectPreview project={project} />
+                  </div>
+                )}
               </div>
-            </div>
-            
-            <div className="rounded-2xl border border-slate-800/80 bg-slate-950 overflow-hidden shadow-2xl">
-              <ProjectPreview project={project} />
-            </div>
-            <p className="text-xs text-slate-400 mt-4 text-center font-sans max-w-2xl mx-auto leading-relaxed">
-              {project.previewImage ? (
-                <span>
-                  💡 <strong>Live Production Deployment:</strong> Visual preview of the deployed production interface for <strong>{project.title}</strong>. Click "Launch Live System" above to explore the live application.
-                </span>
-              ) : (
-                <span>
-                  💡 <strong>Experience the system in action:</strong> Click the <strong>"Trigger Live Flow"</strong> or <strong>"Next Stage"</strong> buttons in the simulation window above to watch real-time webhook operations, database entries, and voice agent replies run.
-                </span>
-              )}
-            </p>
+            )}
           </section>
         )}
 
@@ -2291,6 +2644,81 @@ export const CaseStudyPage: React.FC = () => {
       <footer className="py-12 bg-slate-950 text-center text-xs text-slate-600 border-t border-slate-900/60 font-mono">
         Anas Mobin AI Systems Portfolio © 2026. Built with absolute precision.
       </footer>
+
+      {/* Lightbox Modal for Full Resolution Screenshot Inspection */}
+      {isLightboxOpen && allScreenshots.length > 0 && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col justify-between p-4 sm:p-6"
+          onClick={() => setIsLightboxOpen(false)}
+        >
+          <div className="flex justify-between items-center text-slate-300 max-w-7xl mx-auto w-full">
+            <span className="text-xs font-mono font-bold text-slate-400">
+              {project.title} • {safeIndex + 1} of {allScreenshots.length}
+            </span>
+            <div className="flex items-center gap-2">
+              <button 
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleDeleteScreenshot(safeIndex, e);
+                  if (allScreenshots.length <= 1) {
+                    setIsLightboxOpen(false);
+                  }
+                }}
+                className="px-3 py-1.5 rounded-xl bg-red-950/80 hover:bg-red-600 text-red-200 hover:text-white transition-colors border border-red-800/80 text-xs font-mono flex items-center gap-1.5 cursor-pointer"
+                title="Delete this screenshot"
+              >
+                <Trash2 size={13} />
+                <span>Delete Image</span>
+              </button>
+              <button 
+                onClick={() => setIsLightboxOpen(false)}
+                className="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-slate-400 hover:text-white transition-colors border border-slate-800"
+              >
+                <X size={20} />
+              </button>
+            </div>
+          </div>
+          <div className="flex-grow flex items-center justify-center p-2 sm:p-4 overflow-auto relative">
+            {allScreenshots.length > 1 && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveScreenshotIndex((prev) => (prev - 1 + allScreenshots.length) % allScreenshots.length);
+                }}
+                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-slate-900/90 hover:bg-indigo-600 text-white flex items-center justify-center border border-slate-700 transition-all hover:scale-110 active:scale-95"
+                title="Previous (←)"
+              >
+                <ChevronLeft size={24} />
+              </button>
+            )}
+
+            <img 
+              key={safeIndex}
+              src={allScreenshots[safeIndex]} 
+              alt={project.title} 
+              className="max-w-full max-h-[88vh] object-contain rounded-xl shadow-2xl animate-[fadeIn_0.2s_ease-in-out]"
+              onClick={(e) => e.stopPropagation()}
+            />
+
+            {allScreenshots.length > 1 && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveScreenshotIndex((prev) => (prev + 1) % allScreenshots.length);
+                }}
+                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-slate-900/90 hover:bg-indigo-600 text-white flex items-center justify-center border border-slate-700 transition-all hover:scale-110 active:scale-95"
+                title="Next (→)"
+              >
+                <ChevronRight size={24} />
+              </button>
+            )}
+          </div>
+          <div className="text-center text-xs text-slate-500 font-mono">
+            Click anywhere or press close to exit full screen view
+          </div>
+        </div>
+      )}
     </div>
   );
 };

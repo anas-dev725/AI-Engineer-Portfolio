@@ -16,10 +16,10 @@ const HomeView: React.FC<{ darkMode: boolean; toggleTheme: () => void }> = ({ da
     <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />
     <main>
       <Hero />
-      <About />
-      <Experience />
-      <Skills />
       <Projects />
+      <Experience />
+      <About />
+      <Skills />
       <Contact />
     </main>
     <Footer />

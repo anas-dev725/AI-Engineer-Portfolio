@@ -35,7 +35,66 @@ import {
 } from 'lucide-react';
 
 export const projects: Project[] = [
-  // Voice AI
+  // 1. Newest Flagship Projects (First Row in Grid)
+  {
+    title: "Automated Recruitment Ad Engine",
+    description: "An end-to-end recruitment ad engine designed around candidate psychology: automated Airtable-to-n8n pipelines, 5-pillar emotional angle generation, production-ready VSL & feed scripts, and a self-improving Meta ad feedback loop.",
+    tags: ["n8n Canvas", "Airtable", "OpenAI GPT-4o", "JavaScript", "Meta Graph API"],
+    icon: "workflow",
+    link: "#",
+    category: "AI Agents & Automation"
+  },
+  {
+    title: "24/7 Emergency Trade Dispatcher Agent",
+    description: "Acts as an urgent first-response triage operator across the GTA: prioritizes life & property safety with immediate shut-off instructions, locks in $99 CAD dispatch fee agreements, and commits emergency Cal.com technician bookings in under 2 seconds.",
+    tags: ["Retell AI", "Cal.com", "Twilio", "Deepgram Nova-2", "Voice AI", "n8n"],
+    icon: "phone",
+    link: "#",
+    category: "Voice AI",
+    audioUrl: "/audio/emergency-trade-dispatcher.mp3",
+    audioDuration: "3:43",
+    audioSampleTitle: "Emergency Water Leak Triage & Dispatch (GTA)"
+  },
+  {
+    title: "AI Booking Voice Receptionist for Restaurants",
+    description: "Automates 24/7 dining reservations and guests queries in Danish and English with real-time restaurant table booking integrations.",
+    tags: ["Retell AI", "Deepgram Nova-2", "n8n", "Airtable", "Google Calendar", "Gmail"],
+    icon: "food",
+    link: "#",
+    category: "Voice AI",
+    audioUrl: "/audio/recording(14).mp3",
+    audioDuration: "3:01",
+    audioSampleTitle: "Table Reservation & Slot Triage (Sonder Copenhagen)"
+  },
+
+  // 2. High-Impact SaaS & Multi-Agent Automations
+  {
+    title: "Hisaab AI",
+    description: "An AI-powered personal finance app & smart PKR ledger engineered for Pakistan, featuring receipt OCR, bank SMS parsing, and Kameti savings tracking.",
+    tags: ["React 19", "TypeScript", "Vite 6", "Tailwind CSS v4", "Google GenAI SDK", "Gemini 3.7 Flash", "Recharts", "Express 4"],
+    icon: "chart",
+    link: "https://hisaab-ai-psi.vercel.app/",
+    category: "SaaS Products",
+    previewImage: "/assets/hisaab-ai.png"
+  },
+  {
+    title: "Multi-Platform Content Automation Agent",
+    description: "An automated weekly pipeline that researches niche trending topics and distributes tailored content across social channels and newsletters.",
+    tags: ["n8n", "OpenAI", "Tavily", "Beehiiv", "Buffer", "Supabase"],
+    icon: "workflow",
+    link: "#",
+    category: "AI Agents & Automation"
+  },
+  {
+    title: "Propel AI",
+    description: "A comprehensive AI CRM and sales copilot for Dubai real estate agents, featuring lead management and conversation intelligence.",
+    tags: ["Supabase", "Twilio Voice SDK", "Deepgram Nova-2", "Lovable AI Gateway", "Firecrawl"],
+    icon: "home",
+    link: "https://propel-ai-platform.lovable.app/",
+    category: "SaaS Products"
+  },
+
+  // 3. Established Voice AI & Industry Agents
   {
     title: "Inbound Dispatch Voice Agent",
     description: "Automates inbound customer intake and scheduling triage for Austin home services (HVAC, Plumbing, Electrical), querying technician availability with 15-minute transit geo-fencing.",
@@ -56,55 +115,6 @@ export const projects: Project[] = [
     audioUrl: "/audio/real-estate-voice.wav",
     audioDuration: "0:07",
     audioSampleTitle: "Outbound Lead Qualification (Dubai Real Estate)"
-  },
-  {
-    title: "24/7 Emergency Trade Dispatcher Agent",
-    description: "Acts as an urgent first-response triage operator across the GTA: prioritizes life & property safety with immediate shut-off instructions, locks in $99 CAD dispatch fee agreements, and commits emergency Cal.com technician bookings in under 2 seconds.",
-    tags: ["Retell AI", "Cal.com", "Twilio", "Deepgram Nova-2", "Voice AI", "n8n"],
-    icon: "phone",
-    link: "#",
-    category: "Voice AI",
-    audioUrl: "/audio/emergency-trade-dispatcher.mp3",
-    audioDuration: "3:43",
-    audioSampleTitle: "Emergency Water Leak Triage & Dispatch (GTA)"
-  },
-  {
-    title: "AI Booking Voice Receptionist for Restaurants",
-    description: "Automates 24/7 dining reservations and guests queries in Danish and English with real-time restaurant table booking integrations.",
-    tags: ["Retell AI", "ElevenLabs", "n8n", "Supabase", "Cal.com", "Google Calendar", "Gmail", "Airtable"],
-    icon: "food",
-    link: "#",
-    category: "Voice AI",
-    audioUrl: "/audio/restaurant-voice.wav",
-    audioDuration: "0:06",
-    audioSampleTitle: "Table Reservation Call (Danish & English)"
-  },
-  // AI Agents & Automation
-  {
-    title: "Multi-Platform Content Automation Agent",
-    description: "An automated weekly pipeline that researches niche trending topics and distributes tailored content across social channels and newsletters.",
-    tags: ["n8n", "OpenAI", "Tavily", "Beehiiv", "Buffer", "Supabase"],
-    icon: "workflow",
-    link: "#",
-    category: "AI Agents & Automation"
-  },
-  // SaaS Products
-  {
-    title: "Hisaab AI",
-    description: "An AI-powered personal finance app & smart PKR ledger engineered for Pakistan, featuring receipt OCR, bank SMS parsing, and Kameti savings tracking.",
-    tags: ["React 19", "TypeScript", "Vite 6", "Tailwind CSS v4", "Google GenAI SDK", "Gemini 3.7 Flash", "Recharts", "Express 4"],
-    icon: "chart",
-    link: "https://hisaab-ai-psi.vercel.app/",
-    category: "SaaS Products",
-    previewImage: "/assets/hisaab-ai.png"
-  },
-  {
-    title: "Propel AI",
-    description: "A comprehensive AI CRM and sales copilot for Dubai real estate agents, featuring lead management and conversation intelligence.",
-    tags: ["Supabase", "Twilio Voice SDK", "Deepgram Nova-2", "Lovable AI Gateway", "Firecrawl"],
-    icon: "home",
-    link: "https://propel-ai-platform.lovable.app/",
-    category: "SaaS Products"
   },
   {
     title: "Narrato",
@@ -274,6 +284,13 @@ const STAGE_FLOWS: Record<string, FlowStage[]> = {
     { phase: "Calendar Lock", log: "GOOGLE_CAL: Locking Table 4 reservation slot on GCal...", visualType: "calendar", visualData: { status: "locked", slot: "Tonight 19:30" } },
     { phase: "SMS Dispatched", log: "TWILIO: Booking receipt dispatched to guest smartphone.", visualType: "success", visualData: { title: "Table Reserved!", details: "Copenhagen Kitchen • Table 4 @ 19:30" } }
   ],
+  "Automated Recruitment Ad Engine": [
+    { phase: "Airtable Trigger", log: "AIRTABLE: Recruiter checked trigger checkbox. Unified webhook dispatched to n8n Switch router...", visualType: "crawler", visualData: { query: "Job Role: Senior Platform Engineer • 4 Relational Tables" } },
+    { phase: "Candidate Research", log: "OPENAI (GPT-4o): Analyzing raw notes into candidate personas: legacy code friction, CI/CD blockers, transparent salary & recruiter Do's/Don'ts...", visualType: "editor", visualData: { text: "Candidate Persona: Senior Builder • Core Frustration: Slow deploys & legacy tech debt • Salary: $185k-$220k • Recruiter Do's/Don'ts compiled" } },
+    { phase: "5-Pillar Angles", log: "N8N CANVAS: Mapping 5 emotional drivers (Security, Growth, Balance, Earning, Mission) through 5-part blueprint (Hook -> Role -> Benefits -> Proof -> CTA)...", visualType: "pipeline", visualData: { route: "5 Angles: Security & Stability | Career Growth | Work-Life Balance | High Earning | Purpose & Mission" } },
+    { phase: "Scripts & Creatives", log: "JS CODE NODE: Unnesting arrays, normalizing copy, and formatting Feed Ads & 45-60s VSL Video Scripts with staging cues...", visualType: "buffer", visualData: { queues: ["Feed Ad (Technical Peer)", "45-60s Short Video Script (VSL)", "Staging & Visual Cues", "Airtable Relational Sync"] } },
+    { phase: "Meta Feedback Loop", log: "META GRAPH API: Parsing omni_complete_registration conversion arrays and tagging winning hooks to train future ad generations.", visualType: "success", visualData: { title: "Self-Improving Loop Active", details: "Winning ad angles tagged & recycled for future job roles" } }
+  ],
   "Multi-Platform Content Automation Agent": [
     { phase: "Trend Crawl", log: "TAVILY: Scraping trending dev logs and tech articles...", visualType: "crawler", visualData: { source: "GitHub / ProductHunt", query: "AI Agents 2026" } },
     { phase: "GPT Drafting", log: "OPENAI: Generating blog post markdown & social carousels...", visualType: "editor", visualData: { text: "# Scaling n8n Automations on Serverless Nodes..." } },
@@ -398,9 +415,10 @@ const STAGE_FLOWS: Record<string, FlowStage[]> = {
 // Stateful Preview Simulator Component
 export const ProjectPreview: React.FC<{ project: Project }> = ({ project }) => {
   const [stage, setStage] = useState(0);
+  const [imgFailed, setImgFailed] = useState(false);
 
-  // If the project provides a custom preview image, render it directly
-  if (project.previewImage) {
+  // If the project provides a custom preview image and hasn't failed, render it directly
+  if (project.previewImage && !imgFailed) {
     return (
       <div className="w-full h-[280px] bg-slate-950 relative overflow-hidden rounded-t-xl group/imgpreview">
         <img 
@@ -408,14 +426,15 @@ export const ProjectPreview: React.FC<{ project: Project }> = ({ project }) => {
           alt={project.title} 
           className="w-full h-full object-cover object-top transition-transform duration-500 group-hover/imgpreview:scale-105"
           loading="lazy"
+          onError={() => setImgFailed(true)}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
         <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[9px] font-mono text-slate-300 pointer-events-none">
           <span className="bg-slate-950/80 backdrop-blur-md px-2 py-1 rounded-md border border-slate-800 text-slate-300 font-semibold flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            LIVE PRODUCTION PREVIEW
+            LIVE SCREENSHOT
           </span>
-          <span className="bg-slate-950/80 backdrop-blur-md px-2 py-1 rounded-md border border-slate-800 text-pink-400 font-semibold">
+          <span className="bg-slate-950/80 backdrop-blur-md px-2 py-1 rounded-md border border-slate-800 text-indigo-400 font-semibold">
             {project.title}
           </span>
         </div>

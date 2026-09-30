@@ -535,7 +535,9 @@ const getCaseStudyDefaults = (project: Project): CaseStudyDetails => {
         { name: "Meta Graph API Schema", category: "Analytics Feedback", description: "Simulates live Meta ad reporting, cleanly unpacking nested conversion action arrays (omni_complete_registration) and string-based numbers." }
       ],
       screenshots: [
-        "/assets/Recruiting Job Ads Automation Engine.png"
+        "/assets/Recruiting Job Ads Automation Engine.png",
+        "/assets/ad scripts.png",
+        "/assets/ad performance.png"
       ]
     };
   }
@@ -1367,12 +1369,22 @@ export const CaseStudyPage: React.FC = () => {
         const parsed = JSON.parse(stored);
         const defaults = getCaseStudyDefaults(project);
         
-        // Ensure screenshots always fall back to defaults if empty or invalid
-        const validScreenshots = (Array.isArray(parsed.screenshots) && parsed.screenshots.length > 0)
+        // Ensure screenshots always fall back to defaults if empty or invalid,
+        // and merge any new default screenshots so visitors with older cached state see all images
+        const defaultScreenshots = (defaults.screenshots && defaults.screenshots.length > 0)
+          ? defaults.screenshots
+          : (project.previewImage ? [project.previewImage] : []);
+
+        let validScreenshots = (Array.isArray(parsed.screenshots) && parsed.screenshots.length > 0)
           ? parsed.screenshots 
-          : (defaults.screenshots && defaults.screenshots.length > 0 
-              ? defaults.screenshots 
-              : (project.previewImage ? [project.previewImage] : []));
+          : defaultScreenshots;
+
+        if (defaultScreenshots.length > 0) {
+          const missingDefaults = defaultScreenshots.filter(d => !validScreenshots.includes(d));
+          if (missingDefaults.length > 0) {
+            validScreenshots = [...validScreenshots, ...missingDefaults];
+          }
+        }
 
         const merged: CaseStudyDetails = {
           ...defaults,
@@ -1459,7 +1471,9 @@ export const CaseStudyPage: React.FC = () => {
         }
         processed++;
         if (processed === files.length) {
-          const currentScreenshots = details.screenshots || [];
+          const currentScreenshots = (Array.isArray(details.screenshots) && details.screenshots.length > 0)
+            ? details.screenshots
+            : (allScreenshots.length > 0 ? allScreenshots : []);
           const updatedScreenshots = [...currentScreenshots, ...uploadedUrls];
           saveField('screenshots', updatedScreenshots);
           setActiveScreenshotIndex(updatedScreenshots.length - 1);
@@ -1766,6 +1780,16 @@ export const CaseStudyPage: React.FC = () => {
                     </div>
 
                     <div className="flex items-center gap-2 shrink-0">
+                      {/* Upload Screenshot Button */}
+                      <button
+                        onClick={handleFileUploadClick}
+                        className="px-2.5 py-1 rounded bg-indigo-600/30 hover:bg-indigo-600 text-indigo-300 hover:text-white transition-all text-[10px] font-mono flex items-center gap-1.5 border border-indigo-500/40 shadow-sm cursor-pointer"
+                        title="Upload new screenshot"
+                      >
+                        <Upload size={12} />
+                        <span>Upload Screenshot</span>
+                      </button>
+
                       {/* Delete Current Screenshot Button - Only in Edit Mode */}
                       {editMode && (
                         <button
@@ -1890,7 +1914,17 @@ export const CaseStudyPage: React.FC = () => {
                         >
                           <img src={src} alt={`Thumbnail ${idx + 1}`} className="w-full h-14 object-cover object-top" />
                           <div className="bg-slate-950/95 text-[9px] text-slate-300 px-2 py-1 truncate font-mono flex items-center justify-between">
-                            <span>{idx === 0 ? "n8n Canvas" : idx === 1 ? "Airtable Base" : `View ${idx + 1}`}</span>
+                            <span>
+                              {src.toLowerCase().includes('performance')
+                                ? "Ad Performance"
+                                : src.toLowerCase().includes('script')
+                                  ? "Ad Scripts"
+                                  : src.toLowerCase().includes('recruiting') || src.toLowerCase().includes('canvas') || idx === 0
+                                    ? "n8n Canvas"
+                                    : src.toLowerCase().includes('airtable')
+                                      ? "Airtable Base"
+                                      : `View ${idx + 1}`}
+                            </span>
                             {idx === safeIndex && (
                               <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
                             )}

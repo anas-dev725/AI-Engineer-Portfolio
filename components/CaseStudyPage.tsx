@@ -24,7 +24,6 @@ import {
   Edit2,
   Save,
   X,
-  Upload,
   Image as ImageIcon,
   ChevronLeft,
   ChevronRight,
@@ -1780,16 +1779,6 @@ export const CaseStudyPage: React.FC = () => {
                     </div>
 
                     <div className="flex items-center gap-2 shrink-0">
-                      {/* Upload Screenshot Button */}
-                      <button
-                        onClick={handleFileUploadClick}
-                        className="px-2.5 py-1 rounded bg-indigo-600/30 hover:bg-indigo-600 text-indigo-300 hover:text-white transition-all text-[10px] font-mono flex items-center gap-1.5 border border-indigo-500/40 shadow-sm cursor-pointer"
-                        title="Upload new screenshot"
-                      >
-                        <Upload size={12} />
-                        <span>Upload Screenshot</span>
-                      </button>
-
                       {/* Delete Current Screenshot Button - Only in Edit Mode */}
                       {editMode && (
                         <button

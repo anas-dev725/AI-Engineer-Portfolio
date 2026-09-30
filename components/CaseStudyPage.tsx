@@ -1338,13 +1338,23 @@ export const CaseStudyPage: React.FC = () => {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [details, setDetails] = useState<CaseStudyDetails | null>(null);
 
-  // Developer Authorization / Owner Check
+  // Check if we are inside the development / AI Studio preview environment (NOT live deployed site)
+  const isPreviewEnv = typeof window !== 'undefined' && (
+    window.location.hostname.includes('localhost') || 
+    window.location.hostname.includes('127.0.0.1') || 
+    window.location.hostname.includes('ais-dev') || 
+    window.location.hostname.includes('ais-pre')
+  );
+
+  // Developer Authorization / Owner Check (Only active in preview environment)
   const [isOwner, setIsOwner] = useState<boolean>(() => {
-    return localStorage.getItem('portfolio_owner') === 'true' || 
-           new URLSearchParams(window.location.search).get('owner') === 'true' ||
-           window.location.hash.includes('owner=true') ||
-           window.location.hostname === 'localhost' || 
-           window.location.hostname === '127.0.0.1';
+    if (typeof window === 'undefined') return false;
+    const isLive = !window.location.hostname.includes('localhost') && 
+                   !window.location.hostname.includes('127.0.0.1') && 
+                   !window.location.hostname.includes('ais-dev') && 
+                   !window.location.hostname.includes('ais-pre');
+    if (isLive) return false;
+    return true;
   });
   const [showOwnerLogin, setShowOwnerLogin] = useState<boolean>(false);
   const [ownerEmailInput, setOwnerEmailInput] = useState<string>("");
@@ -1620,57 +1630,60 @@ export const CaseStudyPage: React.FC = () => {
             <span>Back to Portfolio</span>
           </Link>
           
-          <div className="flex items-center gap-4">
-            {isOwner ? (
-              <div className="flex items-center gap-3">
-                {/* Reset Defaults button */}
-                <button
-                  onClick={handleResetToDefaults}
-                  className="text-[10px] font-bold text-slate-500 hover:text-red-400 border border-slate-900 hover:border-red-950 px-2.5 py-1.5 rounded transition-all flex items-center gap-1 uppercase"
-                  title="Reset all customized details and files back to defaults"
-                >
-                  <RefreshCw size={10} />
-                  <span className="hidden sm:inline">Reset Defaults</span>
-                </button>
+          {/* Customization controls - ONLY displayed in AI Studio preview / dev, NEVER on the live site */}
+          {isPreviewEnv && (
+            <div className="flex items-center gap-4">
+              {isOwner ? (
+                <div className="flex items-center gap-3">
+                  {/* Reset Defaults button */}
+                  <button
+                    onClick={handleResetToDefaults}
+                    className="text-[10px] font-bold text-slate-500 hover:text-red-400 border border-slate-900 hover:border-red-950 px-2.5 py-1.5 rounded transition-all flex items-center gap-1 uppercase"
+                    title="Reset all customized details and files back to defaults"
+                  >
+                    <RefreshCw size={10} />
+                    <span className="hidden sm:inline">Reset Defaults</span>
+                  </button>
 
-                {/* Premium Interactive Edit Mode Toggle Switch */}
-                <button
-                  onClick={() => setEditMode(!editMode)}
-                  className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-bold transition-all ${
-                    editMode 
-                      ? 'bg-indigo-950/80 border-indigo-500/50 text-indigo-300 shadow-[0_0_12px_rgba(99,102,241,0.25)]' 
-                      : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:border-slate-700'
-                  }`}
-                >
-                  <span className={`w-2 h-2 rounded-full ${editMode ? 'bg-indigo-400 animate-ping' : 'bg-slate-600'}`}></span>
-                  <span>{editMode ? '✏️ EDITING MODE ON' : '✏️ EDIT CASE STUDY'}</span>
-                </button>
+                  {/* Premium Interactive Edit Mode Toggle Switch */}
+                  <button
+                    onClick={() => setEditMode(!editMode)}
+                    className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-bold transition-all ${
+                      editMode 
+                        ? 'bg-indigo-950/80 border-indigo-500/50 text-indigo-300 shadow-[0_0_12px_rgba(99,102,241,0.25)]' 
+                        : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:border-slate-700'
+                    }`}
+                  >
+                    <span className={`w-2 h-2 rounded-full ${editMode ? 'bg-indigo-400 animate-ping' : 'bg-slate-600'}`}></span>
+                    <span>{editMode ? '✏️ EDITING MODE ON' : '✏️ EDIT CASE STUDY'}</span>
+                  </button>
 
-                {/* Dev Logout Option */}
+                  {/* Dev Logout Option */}
+                  <button
+                    onClick={handleOwnerLogout}
+                    className="p-1.5 bg-slate-900 border border-slate-800 rounded-full text-slate-500 hover:text-slate-300 transition-colors"
+                    title="Lock Dashboard (Guest Preview View)"
+                  >
+                    <Lock size={12} />
+                  </button>
+                </div>
+              ) : (
                 <button
-                  onClick={handleOwnerLogout}
-                  className="p-1.5 bg-slate-900 border border-slate-800 rounded-full text-slate-500 hover:text-slate-300 transition-colors"
-                  title="Lock Dashboard (Guest Preview View)"
+                  onClick={() => setShowOwnerLogin(true)}
+                  className="text-[10px] text-slate-600 hover:text-slate-400 font-bold tracking-widest transition-colors flex items-center gap-1.5 uppercase font-mono"
+                  title="Developer Customization Authorization Portal"
                 >
-                  <Lock size={12} />
+                  <Lock size={11} />
+                  <span>Customize</span>
                 </button>
-              </div>
-            ) : (
-              <button
-                onClick={() => setShowOwnerLogin(true)}
-                className="text-[10px] text-slate-600 hover:text-slate-400 font-bold tracking-widest transition-colors flex items-center gap-1.5 uppercase font-mono"
-                title="Developer Customization Authorization Portal"
-              >
-                <Lock size={11} />
-                <span>Customize</span>
-              </button>
-            )}
-          </div>
+              )}
+            </div>
+          )}
         </div>
       </header>
 
-      {/* 2. FLOATING EDIT MODE WARNING BAR */}
-      {editMode && (
+      {/* 2. FLOATING EDIT MODE WARNING BAR (Only in preview) */}
+      {isPreviewEnv && editMode && (
         <div className="bg-gradient-to-r from-indigo-950 via-slate-950 to-indigo-950 border-b border-indigo-900/40 text-center py-2.5 text-[11px] font-semibold text-indigo-300 font-mono tracking-wider flex items-center justify-center gap-2 shrink-0 animate-pulse">
           <Edit2 size={12} className="text-indigo-400" />
           <span>PORTFOLIO CUSTOMIZATION MODULE ENGAGED. DIRECTLY EDIT AND UPLOAD SCRIPTS & SCREENSHOTS BELOW.</span>
@@ -1824,12 +1837,12 @@ export const CaseStudyPage: React.FC = () => {
                   </div>
 
                   <div className="flex items-center gap-3 flex-wrap">
-                    {/* Add More Screenshot button - Only visible in AI Studio Preview / Dev / EditMode */}
-                    {(editMode || (typeof window !== 'undefined' && (window.location.hostname.includes('localhost') || window.location.hostname.includes('127.0.0.1') || window.location.hostname.includes('ais-dev') || window.location.hostname.includes('ais-pre')))) && (
+                    {/* Add More Screenshot button - Only visible in AI Studio Preview during EditMode */}
+                    {isPreviewEnv && editMode && (
                       <button
                         onClick={handleFileUploadClick}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/30 text-xs font-semibold transition-all hover:scale-105"
-                        title="Add Airtable or Workflow Screenshot (Studio Preview)"
+                        title="Add Airtable or Workflow Screenshot"
                       >
                         <Plus size={14} />
                         <span>Add Screenshot</span>
@@ -1859,19 +1872,21 @@ export const CaseStudyPage: React.FC = () => {
                     </div>
 
                     <div className="flex items-center gap-2 shrink-0">
-                      {/* Delete Current Screenshot Button */}
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          handleDeleteScreenshot(safeIndex, e);
-                        }}
-                        className="px-2.5 py-1 rounded bg-red-950/80 hover:bg-red-600 text-red-300 hover:text-white transition-all text-[10px] font-mono flex items-center gap-1.5 border border-red-800/80 hover:border-red-500 shadow-sm cursor-pointer"
-                        title="Delete current screenshot"
-                      >
-                        <Trash2 size={12} />
-                        <span>Delete Image</span>
-                      </button>
+                      {/* Delete Current Screenshot Button - Only in Edit Mode */}
+                      {editMode && (
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            handleDeleteScreenshot(safeIndex, e);
+                          }}
+                          className="px-2.5 py-1 rounded bg-red-950/80 hover:bg-red-600 text-red-300 hover:text-white transition-all text-[10px] font-mono flex items-center gap-1.5 border border-red-800/80 hover:border-red-500 shadow-sm cursor-pointer"
+                          title="Delete current screenshot"
+                        >
+                          <Trash2 size={12} />
+                          <span>Delete Image</span>
+                        </button>
+                      )}
 
                       {/* Carousel Status & Next Button in Header if multiple images */}
                       {allScreenshots.length > 1 && (
@@ -1987,18 +2002,20 @@ export const CaseStudyPage: React.FC = () => {
                             )}
                           </div>
                         </button>
-                        {/* Delete button on thumbnail */}
-                        <button
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            handleDeleteScreenshot(idx, e);
-                          }}
-                          className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-red-600 hover:bg-red-500 text-white flex items-center justify-center opacity-85 hover:opacity-100 group-hover/thumb:opacity-100 transition-opacity shadow-md z-10 border border-slate-900 cursor-pointer"
-                          title="Delete this screenshot"
-                        >
-                          <X size={10} />
-                        </button>
+                        {/* Delete button on thumbnail - Only in Edit Mode */}
+                        {editMode && (
+                          <button
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleDeleteScreenshot(idx, e);
+                            }}
+                            className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-red-600 hover:bg-red-500 text-white flex items-center justify-center opacity-85 hover:opacity-100 group-hover/thumb:opacity-100 transition-opacity shadow-md z-10 border border-slate-900 cursor-pointer"
+                            title="Delete this screenshot"
+                          >
+                            <X size={10} />
+                          </button>
+                        )}
                       </div>
                     ))}
                   </div>
@@ -2020,12 +2037,12 @@ export const CaseStudyPage: React.FC = () => {
                   </div>
 
                   <div className="flex items-center gap-3 flex-wrap">
-                    {/* Add Screenshot button - Available in Studio Preview / Dev */}
-                    {(editMode || (typeof window !== 'undefined' && (window.location.hostname.includes('localhost') || window.location.hostname.includes('127.0.0.1') || window.location.hostname.includes('ais-dev') || window.location.hostname.includes('ais-pre')))) && (
+                    {/* Add Screenshot button - Available in AI Studio Preview during EditMode */}
+                    {isPreviewEnv && editMode && (
                       <button
                         onClick={handleFileUploadClick}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/30 text-xs font-semibold transition-all hover:scale-105"
-                        title="Add Airtable or Workflow Screenshot (Studio Preview)"
+                        title="Add Airtable or Workflow Screenshot"
                       >
                         <Plus size={14} />
                         <span>Add Screenshot</span>
@@ -2041,8 +2058,8 @@ export const CaseStudyPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Upload Banner / Dropzone if empty on Restaurant project */}
-                {project.title === "AI Booking Voice Receptionist for Restaurants" ? (
+                {/* Upload Banner / Dropzone if empty on Restaurant project (Only in preview during edit mode) */}
+                {project.title === "AI Booking Voice Receptionist for Restaurants" && isPreviewEnv && editMode ? (
                   <div 
                     onClick={handleFileUploadClick}
                     className="rounded-2xl border-2 border-dashed border-slate-800 hover:border-indigo-500/60 bg-slate-950/60 hover:bg-slate-950/90 p-8 sm:p-12 flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-300 group shadow-2xl"
@@ -2656,21 +2673,23 @@ export const CaseStudyPage: React.FC = () => {
               {project.title} • {safeIndex + 1} of {allScreenshots.length}
             </span>
             <div className="flex items-center gap-2">
-              <button 
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  handleDeleteScreenshot(safeIndex, e);
-                  if (allScreenshots.length <= 1) {
-                    setIsLightboxOpen(false);
-                  }
-                }}
-                className="px-3 py-1.5 rounded-xl bg-red-950/80 hover:bg-red-600 text-red-200 hover:text-white transition-colors border border-red-800/80 text-xs font-mono flex items-center gap-1.5 cursor-pointer"
-                title="Delete this screenshot"
-              >
-                <Trash2 size={13} />
-                <span>Delete Image</span>
-              </button>
+              {editMode && (
+                <button 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleDeleteScreenshot(safeIndex, e);
+                    if (allScreenshots.length <= 1) {
+                      setIsLightboxOpen(false);
+                    }
+                  }}
+                  className="px-3 py-1.5 rounded-xl bg-red-950/80 hover:bg-red-600 text-red-200 hover:text-white transition-colors border border-red-800/80 text-xs font-mono flex items-center gap-1.5 cursor-pointer"
+                  title="Delete this screenshot"
+                >
+                  <Trash2 size={13} />
+                  <span>Delete Image</span>
+                </button>
+              )}
               <button 
                 onClick={() => setIsLightboxOpen(false)}
                 className="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-slate-400 hover:text-white transition-colors border border-slate-800"

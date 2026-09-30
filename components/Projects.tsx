@@ -42,7 +42,8 @@ export const projects: Project[] = [
     tags: ["n8n Canvas", "Airtable", "OpenAI GPT-4o", "JavaScript", "Meta Graph API"],
     icon: "workflow",
     link: "#",
-    category: "AI Agents & Automation"
+    category: "AI Agents & Automation",
+    previewImage: "/assets/Recruiting Job Ads Automation Engine.png"
   },
   {
     title: "24/7 Emergency Trade Dispatcher Agent",
@@ -429,11 +430,7 @@ export const ProjectPreview: React.FC<{ project: Project }> = ({ project }) => {
           onError={() => setImgFailed(true)}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
-        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[9px] font-mono text-slate-300 pointer-events-none">
-          <span className="bg-slate-950/80 backdrop-blur-md px-2 py-1 rounded-md border border-slate-800 text-slate-300 font-semibold flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            LIVE SCREENSHOT
-          </span>
+        <div className="absolute bottom-3 right-3 text-[9px] font-mono text-slate-300 pointer-events-none">
           <span className="bg-slate-950/80 backdrop-blur-md px-2 py-1 rounded-md border border-slate-800 text-indigo-400 font-semibold">
             {project.title}
           </span>

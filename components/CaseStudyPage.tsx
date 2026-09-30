@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { projects, slugify, ProjectPreview } from './Projects';
+import { projects, slugify } from './Projects';
 import { Project } from '../types';
 import { VoiceCallTranscriptPlayer } from './VoiceCallTranscriptPlayer';
 import { 
@@ -34,7 +34,6 @@ import {
   Mail,
   Home,
   Calendar,
-  Lock,
   Eye,
   Info,
   CheckCircle,
@@ -1338,47 +1337,6 @@ export const CaseStudyPage: React.FC = () => {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [details, setDetails] = useState<CaseStudyDetails | null>(null);
 
-  // Check if we are inside the development / AI Studio preview environment (NOT live deployed site)
-  const isPreviewEnv = typeof window !== 'undefined' && (
-    window.location.hostname.includes('localhost') || 
-    window.location.hostname.includes('127.0.0.1') || 
-    window.location.hostname.includes('ais-dev') || 
-    window.location.hostname.includes('ais-pre')
-  );
-
-  // Developer Authorization / Owner Check (Only active in preview environment)
-  const [isOwner, setIsOwner] = useState<boolean>(() => {
-    if (typeof window === 'undefined') return false;
-    const isLive = !window.location.hostname.includes('localhost') && 
-                   !window.location.hostname.includes('127.0.0.1') && 
-                   !window.location.hostname.includes('ais-dev') && 
-                   !window.location.hostname.includes('ais-pre');
-    if (isLive) return false;
-    return true;
-  });
-  const [showOwnerLogin, setShowOwnerLogin] = useState<boolean>(false);
-  const [ownerEmailInput, setOwnerEmailInput] = useState<string>("");
-  const [ownerLoginError, setOwnerLoginError] = useState<string>("");
-
-  const handleOwnerLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (ownerEmailInput.trim().toLowerCase() === 'anasmobin0@gmail.com') {
-      localStorage.setItem('portfolio_owner', 'true');
-      setIsOwner(true);
-      setShowOwnerLogin(false);
-      setOwnerEmailInput("");
-      setOwnerLoginError("");
-    } else {
-      setOwnerLoginError("Unauthorized email address.");
-    }
-  };
-
-  const handleOwnerLogout = () => {
-    localStorage.removeItem('portfolio_owner');
-    setIsOwner(false);
-    setEditMode(false);
-  };
-  
   // States for Editing Features
   const [editingFeatureIndex, setEditingFeatureIndex] = useState<number | null>(null);
   const [editFeatureTitle, setEditFeatureTitle] = useState("");
@@ -1409,13 +1367,17 @@ export const CaseStudyPage: React.FC = () => {
         const parsed = JSON.parse(stored);
         const defaults = getCaseStudyDefaults(project);
         
-        // Ensure properties exist, particularly screenshots (empty array must be respected)
+        // Ensure screenshots always fall back to defaults if empty or invalid
+        const validScreenshots = (Array.isArray(parsed.screenshots) && parsed.screenshots.length > 0)
+          ? parsed.screenshots 
+          : (defaults.screenshots && defaults.screenshots.length > 0 
+              ? defaults.screenshots 
+              : (project.previewImage ? [project.previewImage] : []));
+
         const merged: CaseStudyDetails = {
           ...defaults,
           ...parsed,
-          screenshots: Array.isArray(parsed.screenshots) 
-            ? parsed.screenshots 
-            : (defaults.screenshots || [])
+          screenshots: validScreenshots
         };
         setDetails(merged);
       } catch (err) {
@@ -1610,9 +1572,12 @@ export const CaseStudyPage: React.FC = () => {
   };
 
   const themeColors = getThemeColorClass();
-  const allScreenshots = Array.isArray(details.screenshots)
+  const defaultScreenshots = (project ? getCaseStudyDefaults(project).screenshots : []) || [];
+  const allScreenshots = (Array.isArray(details.screenshots) && details.screenshots.length > 0)
     ? details.screenshots
-    : (project.previewImage ? [project.previewImage] : []);
+    : (defaultScreenshots.length > 0 
+        ? defaultScreenshots 
+        : (project.previewImage ? [project.previewImage] : []));
   const safeIndex = activeScreenshotIndex < allScreenshots.length ? activeScreenshotIndex : 0;
   const screenshotCount = allScreenshots.length;
 
@@ -1629,66 +1594,8 @@ export const CaseStudyPage: React.FC = () => {
             <ArrowLeft size={16} className="transform group-hover:-translate-x-1 transition-transform" />
             <span>Back to Portfolio</span>
           </Link>
-          
-          {/* Customization controls - ONLY displayed in AI Studio preview / dev, NEVER on the live site */}
-          {isPreviewEnv && (
-            <div className="flex items-center gap-4">
-              {isOwner ? (
-                <div className="flex items-center gap-3">
-                  {/* Reset Defaults button */}
-                  <button
-                    onClick={handleResetToDefaults}
-                    className="text-[10px] font-bold text-slate-500 hover:text-red-400 border border-slate-900 hover:border-red-950 px-2.5 py-1.5 rounded transition-all flex items-center gap-1 uppercase"
-                    title="Reset all customized details and files back to defaults"
-                  >
-                    <RefreshCw size={10} />
-                    <span className="hidden sm:inline">Reset Defaults</span>
-                  </button>
-
-                  {/* Premium Interactive Edit Mode Toggle Switch */}
-                  <button
-                    onClick={() => setEditMode(!editMode)}
-                    className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-bold transition-all ${
-                      editMode 
-                        ? 'bg-indigo-950/80 border-indigo-500/50 text-indigo-300 shadow-[0_0_12px_rgba(99,102,241,0.25)]' 
-                        : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:border-slate-700'
-                    }`}
-                  >
-                    <span className={`w-2 h-2 rounded-full ${editMode ? 'bg-indigo-400 animate-ping' : 'bg-slate-600'}`}></span>
-                    <span>{editMode ? '✏️ EDITING MODE ON' : '✏️ EDIT CASE STUDY'}</span>
-                  </button>
-
-                  {/* Dev Logout Option */}
-                  <button
-                    onClick={handleOwnerLogout}
-                    className="p-1.5 bg-slate-900 border border-slate-800 rounded-full text-slate-500 hover:text-slate-300 transition-colors"
-                    title="Lock Dashboard (Guest Preview View)"
-                  >
-                    <Lock size={12} />
-                  </button>
-                </div>
-              ) : (
-                <button
-                  onClick={() => setShowOwnerLogin(true)}
-                  className="text-[10px] text-slate-600 hover:text-slate-400 font-bold tracking-widest transition-colors flex items-center gap-1.5 uppercase font-mono"
-                  title="Developer Customization Authorization Portal"
-                >
-                  <Lock size={11} />
-                  <span>Customize</span>
-                </button>
-              )}
-            </div>
-          )}
         </div>
       </header>
-
-      {/* 2. FLOATING EDIT MODE WARNING BAR (Only in preview) */}
-      {isPreviewEnv && editMode && (
-        <div className="bg-gradient-to-r from-indigo-950 via-slate-950 to-indigo-950 border-b border-indigo-900/40 text-center py-2.5 text-[11px] font-semibold text-indigo-300 font-mono tracking-wider flex items-center justify-center gap-2 shrink-0 animate-pulse">
-          <Edit2 size={12} className="text-indigo-400" />
-          <span>PORTFOLIO CUSTOMIZATION MODULE ENGAGED. DIRECTLY EDIT AND UPLOAD SCRIPTS & SCREENSHOTS BELOW.</span>
-        </div>
-      )}
 
       <main className="flex-grow max-w-6xl w-full mx-auto px-4 py-8 sm:py-12">
         
@@ -1803,8 +1710,8 @@ export const CaseStudyPage: React.FC = () => {
           </section>
         )}
 
-        {/* 4. SYSTEM ARCHITECTURE & FULL PRODUCTION SCREENSHOT SHOWCASE OR INTERACTIVE SIMULATOR */}
-        {(project.category !== "Voice AI" || project.title === "AI Booking Voice Receptionist for Restaurants" || allScreenshots.length > 0) && (
+        {/* 4. SYSTEM ARCHITECTURE & FULL PRODUCTION WORKFLOW CANVAS / DATABASE VIEW */}
+        {allScreenshots.length > 0 && (
           <section className="bg-slate-900/10 border border-slate-900 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden mb-12">
             <div className="absolute inset-0 bg-dot-pattern opacity-5 pointer-events-none"></div>
 
@@ -1818,47 +1725,34 @@ export const CaseStudyPage: React.FC = () => {
               className="hidden" 
             />
 
-            {allScreenshots.length > 0 ? (
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
               <div>
-                {/* Header */}
-                <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
-                  <div>
-                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block font-sans">
-                      Production Architecture & Database View
-                    </span>
-                    <h3 className="text-xl font-extrabold text-white flex items-center gap-2 mt-0.5 font-sans">
-                      <Terminal size={18} className={themeColors.primary} />
-                      {project.title === "Automated Recruitment Ad Engine" 
-                        ? "Workflow Canvas & Database Architecture" 
-                        : project.title === "AI Booking Voice Receptionist for Restaurants"
-                          ? "Voice Pipeline & Reservation Workflow Gallery"
-                          : "Application Interface Preview"}
-                    </h3>
-                  </div>
+                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block font-sans">
+                  Production Architecture & Database View
+                </span>
+                <h3 className="text-xl font-extrabold text-white flex items-center gap-2 mt-0.5 font-sans">
+                  <Terminal size={18} className={themeColors.primary} />
+                  {project.title === "Automated Recruitment Ad Engine" 
+                    ? "Workflow Canvas & Database Architecture" 
+                    : project.title === "AI Booking Voice Receptionist for Restaurants"
+                      ? "Voice Pipeline & Reservation Workflow Gallery"
+                      : "Application Interface & Production Architecture"}
+                </h3>
+              </div>
 
-                  <div className="flex items-center gap-3 flex-wrap">
-                    {/* Add More Screenshot button - Only visible in AI Studio Preview during EditMode */}
-                    {isPreviewEnv && editMode && (
-                      <button
-                        onClick={handleFileUploadClick}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/30 text-xs font-semibold transition-all hover:scale-105"
-                        title="Add Airtable or Workflow Screenshot"
-                      >
-                        <Plus size={14} />
-                        <span>Add Screenshot</span>
-                      </button>
-                    )}
-
-                    <div className="flex items-center gap-2 bg-slate-950/60 border border-slate-900 px-3.5 py-1.5 rounded-xl">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                      <span className="text-[10px] text-slate-400 font-mono font-bold uppercase tracking-wider">
-                        Production Live System
-                      </span>
-                    </div>
-                  </div>
+              <div className="flex items-center gap-3 flex-wrap">
+                <div className="flex items-center gap-2 bg-slate-950/60 border border-slate-900 px-3.5 py-1.5 rounded-xl">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span className="text-[10px] text-slate-400 font-mono font-bold uppercase tracking-wider">
+                    Production Live System
+                  </span>
                 </div>
+              </div>
+            </div>
 
-                {/* Main Full-Visibility Screenshot Window with Carousel Navigation */}
+            <div>
+              {/* Main Full-Visibility Screenshot Window with Carousel Navigation */}
                 <div className="rounded-2xl border border-slate-800/80 bg-[#060913] overflow-hidden shadow-2xl relative group">
                   {/* Window Bar */}
                   <div className="bg-slate-950/90 border-b border-slate-800/80 px-4 py-2.5 flex items-center justify-between">
@@ -2021,70 +1915,6 @@ export const CaseStudyPage: React.FC = () => {
                   </div>
                 )}
               </div>
-            ) : (
-              <div>
-                <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
-                  <div>
-                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block font-sans">
-                      Production Architecture & Image Gallery
-                    </span>
-                    <h3 className="text-xl font-extrabold text-white flex items-center gap-2 mt-0.5 font-sans">
-                      <Terminal size={18} className={themeColors.primary} />
-                      {project.title === "AI Booking Voice Receptionist for Restaurants"
-                        ? "Voice Pipeline & Reservation Workflow Gallery"
-                        : "Interactive Live Run Simulator"}
-                    </h3>
-                  </div>
-
-                  <div className="flex items-center gap-3 flex-wrap">
-                    {/* Add Screenshot button - Available in AI Studio Preview during EditMode */}
-                    {isPreviewEnv && editMode && (
-                      <button
-                        onClick={handleFileUploadClick}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/30 text-xs font-semibold transition-all hover:scale-105"
-                        title="Add Airtable or Workflow Screenshot"
-                      >
-                        <Plus size={14} />
-                        <span>Add Screenshot</span>
-                      </button>
-                    )}
-
-                    <div className="flex items-center gap-2 bg-slate-950/60 border border-slate-900 px-3.5 py-1.5 rounded-xl self-start sm:self-auto">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                      <span className="text-[10px] text-slate-400 font-mono font-bold uppercase tracking-wider">
-                        Gallery Ready
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Upload Banner / Dropzone if empty on Restaurant project (Only in preview during edit mode) */}
-                {project.title === "AI Booking Voice Receptionist for Restaurants" && isPreviewEnv && editMode ? (
-                  <div 
-                    onClick={handleFileUploadClick}
-                    className="rounded-2xl border-2 border-dashed border-slate-800 hover:border-indigo-500/60 bg-slate-950/60 hover:bg-slate-950/90 p-8 sm:p-12 flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-300 group shadow-2xl"
-                  >
-                    <div className="w-14 h-14 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-indigo-500/20 transition-all">
-                      <Plus size={26} />
-                    </div>
-                    <h4 className="text-base font-bold text-white mb-1.5">
-                      Add n8n Canvas, Airtable Table, or Retell Flow Screenshots
-                    </h4>
-                    <p className="text-xs text-slate-400 max-w-md mb-4 leading-relaxed font-light">
-                      Click here to upload PNG or JPG screenshots of your n8n workflow canvas, Airtable reservation database, or Retell voice agent flow.
-                    </p>
-                    <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-500/20 transition-all">
-                      <Plus size={14} />
-                      <span>Browse & Upload Screenshot</span>
-                    </span>
-                  </div>
-                ) : (
-                  <div className="rounded-2xl border border-slate-800/80 bg-slate-950 overflow-hidden shadow-2xl">
-                    <ProjectPreview project={project} />
-                  </div>
-                )}
-              </div>
-            )}
           </section>
         )}
 

@@ -418,7 +418,17 @@ export const AnasAiChatbot: React.FC = () => {
 
   const toggleAudio = () => {
     if (!audioRef.current) {
-      audioRef.current = new Audio('/audio/emergency-trade-dispatcher.mp3');
+      const audio = new Audio('/audio/restaurant-voice.wav');
+      audio.addEventListener('timeupdate', () => {
+        if (audio.duration) {
+          setAudioProgress((audio.currentTime / audio.duration) * 100);
+        }
+      });
+      audio.addEventListener('ended', () => {
+        setIsPlayingAudio(false);
+        setAudioProgress(0);
+      });
+      audioRef.current = audio;
     }
     if (isPlayingAudio) {
       audioRef.current.pause();
@@ -562,11 +572,12 @@ export const AnasAiChatbot: React.FC = () => {
       textLower.includes('hear') ||
       textLower.includes('speech') ||
       textLower.includes('call') ||
+      textLower.includes('restaurant') ||
       textLower.includes('telephon');
 
     if (isVoiceIntent) {
       return {
-        reply: "Here is real production Voice AI in action! 🎙️ Anas builds sub-600ms telephony agents with Retell AI, Twilio, and ElevenLabs. Listen to this live emergency trade dispatcher:",
+        reply: "Here is real production Voice AI in action! 🎙️ Anas builds sub-600ms telephony agents with Retell AI, Twilio, and ElevenLabs. Listen to this live restaurant reservation and order desk agent:",
         cardType: 'audio' as const,
       };
     }
@@ -968,9 +979,9 @@ export const AnasAiChatbot: React.FC = () => {
                             <div className="mt-2.5 p-2.5 rounded-xl bg-slate-950 border border-slate-800">
                               <div className="flex items-center justify-between mb-1.5">
                                 <span className="text-[10px] font-medium text-slate-300">
-                                  Toronto Emergency HVAC Dispatch
+                                  Restaurant Reservation & Orders Agent
                                 </span>
-                                <span className="text-[9px] text-slate-500 font-mono">Retell AI</span>
+                                <span className="text-[9px] text-slate-500 font-mono">Retell AI • Twilio</span>
                               </div>
 
                               {/* Soundwave Simulation */}
@@ -1001,7 +1012,7 @@ export const AnasAiChatbot: React.FC = () => {
                                   <span>{isPlayingAudio ? "Pause" : "Play Recording"}</span>
                                 </button>
                                 <span className="text-[9px] font-mono text-slate-500">
-                                  {isPlayingAudio ? "Streaming..." : "0:48"}
+                                  {isPlayingAudio ? "Playing..." : "0:36"}
                                 </span>
                               </div>
                             </div>

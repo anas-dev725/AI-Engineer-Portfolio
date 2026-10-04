@@ -10,6 +10,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 import { CaseStudyPage } from './components/CaseStudyPage';
+import { AnasAiChatbot } from './components/AnasAiChatbot';
 
 const HomeView: React.FC<{ darkMode: boolean; toggleTheme: () => void }> = ({ darkMode, toggleTheme }) => (
   <>
@@ -49,6 +50,7 @@ function App() {
           <Route path="/" element={<HomeView darkMode={darkMode} toggleTheme={toggleTheme} />} />
           <Route path="/project/:slug" element={<CaseStudyPage />} />
         </Routes>
+        <AnasAiChatbot />
       </div>
     </HashRouter>
   );
